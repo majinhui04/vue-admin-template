@@ -85,7 +85,8 @@ export default [
                         path: 'simple1',
                         meta: {
                             icon: 'font_family icon-shangpin-xuanzhong',
-                            title: 'simple1'
+                            title: 'simple1',
+                            keepAlive: true
                         },
                         component: resolve => require(['../../pages/table/simple1.vue'], resolve)
                     },

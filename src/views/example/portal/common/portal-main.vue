@@ -5,9 +5,10 @@
             <tags-view v-if="needTagsView"/>
             <v-breadcrumb v-if="showBreadcrumb"></v-breadcrumb>
             <div class="portal-content-view">
-                <keep-alive :include="cachedViews">
-                    <router-view :key="key"/>
+                <keep-alive>
+                    <router-view v-if="$route.meta.keepAlive" :key="key"></router-view>
                 </keep-alive>
+                <router-view v-if="!$route.meta.keepAlive" :key="key"></router-view>
             </div>
         </div>
     </div>
