@@ -4,7 +4,7 @@ import $console from '@/sharegoods-ui/lib/utils/logger';
 
 const whiteList = ['/login', '/404'];
 
-export default function(router){
+export default function (router) {
     // 权限控制
     router.beforeEach((to, from, next) => {
         const token = getToken();
@@ -64,6 +64,7 @@ export default function(router){
         const body = document.getElementsByTagName('body')[0];
         try {
             body.className = bodyClass;
-        } catch (e) {}
+        } catch (e) {
+        }
     });
 }

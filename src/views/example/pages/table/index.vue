@@ -85,18 +85,21 @@
                             size="mini"
                             type="success"
                             @click="handleModifyStatus(row,'published')"
-                        >Publish</el-button>
+                        >Publish
+                        </el-button>
                         <el-button
                             v-if="row.status!='draft'"
                             size="mini"
                             @click="handleModifyStatus(row,'draft')"
-                        >Draft</el-button>
+                        >Draft
+                        </el-button>
                         <el-button
                             v-if="row.status!='deleted'"
                             size="mini"
                             type="danger"
                             @click="handleDelete(row)"
-                        >Delete</el-button>
+                        >Delete
+                        </el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -156,7 +159,8 @@
                 <el-button
                     type="primary"
                     @click="dialogStatus==='create'?createData():updateData()"
-                >确定</el-button>
+                >确定
+                </el-button>
             </div>
         </el-dialog>
     </div>
@@ -166,6 +170,7 @@
     import Pagination from '@/sharegoods-ui/packages/pagination/index.vue';
 
     export default {
+        name: 'ComplexTable',
         components: {
             Pagination
         },

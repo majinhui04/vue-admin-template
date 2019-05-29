@@ -81,7 +81,6 @@
             }
         },
         mounted() {
-            // console.log(this.sidebar);
             this.initSideRouter();
         }
     };

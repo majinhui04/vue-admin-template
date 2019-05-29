@@ -9,7 +9,7 @@
 <script>
 
     export default {
-        name: 'simple',
+        name: 'simple1',
         data() {
             return {
                 formData: {

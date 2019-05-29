@@ -113,6 +113,14 @@
         </ul>
     </div>
 </template>
+<script>
+    export default {
+        name: 'icon',
+        mounted() {
+            console.log(383838383);
+        }
+    };
+</script>
 <style scoped lang="scss">
     .icon_lists {
         width: 100% !important;
@@ -121,6 +129,7 @@
         margin: 0;
         padding: 0;
     }
+
     .dib-box .dib {
         vertical-align: top;
         font-size: 12px;
@@ -128,6 +137,7 @@
         word-spacing: normal;
         line-height: inherit;
     }
+
     .icon_lists li {
         width: 100px;
         margin-bottom: 10px;
@@ -136,11 +146,13 @@
         list-style: none !important;
         cursor: default;
     }
+
     .dib {
         display: inline-block;
         *display: inline;
         *zoom: 1;
     }
+
     .icon_lists .icon {
         display: block;
         height: 100px;
@@ -152,9 +164,11 @@
         -moz-transition: font-size 0.25s linear, width 0.25s linear;
         transition: font-size 0.25s linear, width 0.25s linear;
     }
+
     .icon_lists li .name, .icon_lists li .code-name {
         color: #666;
     }
+
     .icon_lists li .code-name {
         line-height: 1.2;
     }

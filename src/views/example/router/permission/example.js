@@ -59,6 +59,15 @@ export default [
                 component: resolve => require(['../../pages/icon.vue'], resolve)
             },
             {
+                name: 'simple',
+                path: 'simple',
+                meta: {
+                    icon: 'font_family icon-shangpin-xuanzhong',
+                    title: 'simple'
+                },
+                component: resolve => require(['../../pages/table/simple.vue'], resolve)
+            },
+            {
                 alwaysShow: true,
                 name: 'table',
                 path: 'table',
@@ -66,23 +75,26 @@ export default [
                     icon: 'font_family icon-shangpin-xuanzhong',
                     title: '表格'
                 },
-                component: portalView,
+                redirect: {
+                    name: 'simple1'
+                },
+                component: () => import('@/views/example/portal/common/portal-view'),
                 children: [
                     {
-                        name: 'simple',
-                        path: 'simple',
+                        name: 'simple1',
+                        path: 'simple1',
                         meta: {
                             icon: 'font_family icon-shangpin-xuanzhong',
-                            title: 'simple'
+                            title: 'simple1'
                         },
-                        component: resolve => require(['../../pages/table/simple.vue'], resolve)
+                        component: resolve => require(['../../pages/table/simple1.vue'], resolve)
                     },
                     {
-                        name: 'complex-table',
+                        name: 'ComplexTable',
                         path: 'complex-table',
                         meta: {
                             icon: 'font_family icon-shangpin-xuanzhong',
-                            title: 'complex-table'
+                            title: 'ComplexTable'
                         },
                         component: resolve => require(['../../pages/table/index.vue'], resolve)
                     }

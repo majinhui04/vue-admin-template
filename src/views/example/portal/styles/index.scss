@@ -235,6 +235,16 @@ body, html {
         transition: left .1s ease-in-out;
 
     }
+    .portal-content-view {
+        /*position: absolute;
+        left: 0;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        overflow-y: auto;*/
+
+    }
     .portal-son {
         height: 100%;
         position: relative;
