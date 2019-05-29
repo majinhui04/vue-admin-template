@@ -11,11 +11,11 @@ module.exports = {
      */
     showBreadcrumb: true,
     /**
-     * todo
+     * todo 多级目录无法缓存
      * @type {boolean} true | false
      * @description Whether need tagsView
      */
-    tagsView: true,
+    tagsView: false,
     /**
      * todo
      * @type {string | array} 'production' | ['production', 'development']

@@ -78,7 +78,7 @@ export default [
                 redirect: {
                     name: 'simple1'
                 },
-                component: () => import('@/views/example/portal/common/portal-view'),
+                component: portalView,
                 children: [
                     {
                         name: 'simple1',
