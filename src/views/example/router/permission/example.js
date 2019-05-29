@@ -1,5 +1,5 @@
-import portalMain from '@/layout/common/portal-main';
-import portalView from '@/layout/common/portal-view';
+import portalMain from '@/views/example/portal/common/portal-main';
+import portalView from '@/views/example/portal/common/portal-view';
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -20,6 +20,7 @@ export default [
         path: 'dashboard',
         component: portalMain,
         meta: {
+            top: true,
             title: '总览'
         },
         redirect: {
@@ -41,6 +42,7 @@ export default [
         path: 'example',
         component: portalMain,
         meta: {
+            top: true,
             title: '大模块'
         },
         redirect: {

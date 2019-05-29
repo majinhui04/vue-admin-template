@@ -5,11 +5,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 // 浏览器兼容
 import 'babel-polyfill';
 // 公共
-import '@/layout/styles/index.scss';
 import $console from '@/sharegoods-ui/lib/utils/logger';
-import '@/components';
 import SharegoodsUI from '@/sharegoods-ui/lib';
 // 自定义
+import './portal/styles/index.scss';
 import router from './router';
 import App from './app.vue';
 import store from './store';

@@ -4,7 +4,7 @@ module.exports = {
      * @type {boolean} true | false
      * @description Whether show the header
      */
-    showHeader: true,
+    showHeader: false,
     /**
      * @type {boolean} true | false
      * @description Whether show the breadcrumb
@@ -15,7 +15,7 @@ module.exports = {
      * @type {boolean} true | false
      * @description Whether need tagsView
      */
-    tagsView: true,
+    tagsView: false,
     /**
      * todo
      * @type {string | array} 'production' | ['production', 'development']

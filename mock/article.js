@@ -1,5 +1,5 @@
 import Mock from 'mockjs';
-import { sleep } from '../src/utils';
+import { sleep } from './util';
 
 const List = [];
 const count = 100;

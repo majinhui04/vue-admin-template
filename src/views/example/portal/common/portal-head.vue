@@ -30,16 +30,14 @@
 </template>
 <script>
     import { mapGetters } from 'vuex';
-    import { findAllParents } from '@/utils';
 
     export default {
         mounted() {
-            const name = this.$route.name;
-            const ancestors = findAllParents(this.routers, name);
-            const rootName = ancestors[0];
+            const matched = this.$route.matched;
+            const rootName = matched[0].name;
             const root = this.routers.filter(item => item.name === rootName)[0];
             const navList = root.children || [];
-            this.navList = navList;
+            this.navList = navList.filter(item => item.meta.top === true);
         },
         data() {
             return {
@@ -52,7 +50,6 @@
         methods: {
             handleLogout() {
                 this.$store.dispatch('LogOut').then(() => {
-                    // this.$router.push({ name: 'login' });
                     location.reload(true);
                 });
             },

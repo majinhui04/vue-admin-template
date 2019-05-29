@@ -6,7 +6,7 @@
 </template>
 
 <script>
-    import { validateURL } from '@/utils/validate';
+    import { validateURL } from '../../../utils/validate';
 
     export default {
         props: {

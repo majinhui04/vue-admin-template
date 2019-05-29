@@ -10,7 +10,7 @@
     import { mapGetters, mapState } from 'vuex';
 
     export default {
-        name: 'portal',
+        name: 'Portal',
         components: {
             vHeader
         },
@@ -27,18 +27,23 @@
             ...mapGetters(['routers'])
         },
         watch: {
-            // 不同大模块重新渲染view
             $route(newVal, oldVal) {
-                // 获取'/'以下的模块列表
-                const matched = this.$route.matched;
-                const first = matched[1];
-                this.name = first.name;
+                this.updateView();
             }
         },
         created() {
-            const matched = this.$route.matched;
-            const first = matched[1];
-            this.name = first.name;
+            this.updateView();
+        },
+        methods: {
+            updateView() {
+                const matched = this.$route.matched;
+                // 获取二级目录
+                const first = matched[1];
+                // 当出现二级目录是顶级模块则需要重新渲染view
+                if (first && first.meta.top) {
+                    this.name = first.name;
+                }
+            }
         }
     };
 </script>

@@ -10,7 +10,7 @@
 <script>
     import { mapGetters, mapState } from 'vuex';
     import vSidebar from './portal-side';
-    import vBreadcrumb from '@/layout/common/portal-breadcrumb.vue';
+    import vBreadcrumb from './portal-breadcrumb.vue';
 
     export default {
         data() {

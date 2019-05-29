@@ -1,4 +1,4 @@
-import Component from './loading.vue';
+import Component from './index.vue';
 import Vue from 'vue';
 
 const MyConstructor = Vue.extend(Component)
