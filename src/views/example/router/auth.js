@@ -1,6 +1,6 @@
 import { getToken } from '../utils/auth';
 import store from '../store';
-import $console from '@/igrow/utils/logger';
+import $console from '@/sharegoods-ui/lib/utils/logger';
 
 const whiteList = ['/login', '/404'];
 

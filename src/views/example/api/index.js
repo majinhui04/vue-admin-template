@@ -1,8 +1,8 @@
 import Urls from './api.js';
 import { getToken, setToken } from '../utils/auth';
 import { Message } from 'element-ui';
-import $console from '@/igrow/utils/logger';
-import HttpMiddleware from '@/igrow/http/http-middleware';
+import $console from '@/sharegoods-ui/lib/utils/logger';
+import HttpMiddleware from '@/sharegoods-ui/lib/utils/http';
 
 const HTTP_CONFIG = {
     // 所有接口前缀

@@ -163,7 +163,7 @@
 </template>
 
 <script>
-    import Pagination from '@/components/common/pagination/index.vue';
+    import Pagination from '@/sharegoods-ui/packages/pagination/index.vue';
 
     export default {
         components: {

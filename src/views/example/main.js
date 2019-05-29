@@ -6,8 +6,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'babel-polyfill';
 // 公共
 import '@/layout/styles/index.scss';
-import $console from '@/igrow/utils/logger';
+import $console from '@/sharegoods-ui/lib/utils/logger';
 import '@/components';
+import SharegoodsUI from '@/sharegoods-ui/lib';
 // 自定义
 import router from './router';
 import App from './app.vue';
@@ -20,6 +21,7 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI, {
     size: 'small'
 });
+Vue.use(SharegoodsUI);
 Vue.prototype.$api = API;
 Vue.prototype.$console = $console;
 window.$console = $console;

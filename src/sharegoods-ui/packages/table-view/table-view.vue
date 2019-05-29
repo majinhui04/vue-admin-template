@@ -10,7 +10,6 @@
         </el-tabs>
         <el-table
             class="sg-table"
-            ref="myTable"
             v-loading="listLoading"
             :data="dataSource"
             border
@@ -58,7 +57,7 @@
 </template>
 
 <script>
-    import Pagination from '@/components/common/pagination/index.vue';
+    import Pagination from '../pagination/index.vue';
 
     export default {
         name: 'SgTableView',

@@ -2,9 +2,7 @@ import HttpInterface from './http-interface';
 import axios from 'axios';
 import configureResponseError from './interceptors/response-error';
 import configureTimeout from './interceptors/timeout';
-import $util from '../utils/util';
-
-const qs = $util.qs;
+import { qs } from '../util';
 
 class HttpMiddleware extends HttpInterface {
     constructor(urls, options) {
