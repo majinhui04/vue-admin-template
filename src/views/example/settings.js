@@ -2,6 +2,11 @@ module.exports = {
     title: 'Vue Element Admin',
     /**
      * @type {boolean} true | false
+     * @description Whether show the top route
+     */
+    hasTopRoute: false,
+    /**
+     * @type {boolean} true | false
      * @description Whether show the header
      */
     showHeader: true,

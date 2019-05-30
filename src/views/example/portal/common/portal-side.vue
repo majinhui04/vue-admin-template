@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapGetters, mapState } from 'vuex';
     import SidebarItem from './menu/sidebar-item';
 
     export default {
@@ -46,6 +46,9 @@
             };
         },
         computed: {
+            ...mapState({
+                hasTopRoute: state => state.settings.hasTopRoute
+            }),
             ...mapGetters(['routers', 'sidebar', 'userInfo']),
             isCollapse() {
                 return !this.sidebar.opened;
@@ -67,11 +70,10 @@
                 // 获取顶级模块列表
                 const rootChildren = root.children || [];
                 // 是否有顶级模块
-                const hasTop = rootChildren.filter(item => item.meta.top === true).length > 1;
                 // 获取顶级模块
                 const top = rootChildren.filter(item => item.name === topName)[0];
                 // 获取模块祖级树下的子级列表中菜单
-                this.items = hasTop ? top.children : rootChildren;
+                this.items = this.hasTopRoute ? top.children : rootChildren;
             },
             // 退出
             handleLogout() {

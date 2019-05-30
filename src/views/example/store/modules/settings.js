@@ -1,8 +1,9 @@
 import defaultSettings from '../../settings';
 
-const { showHeader, showBreadcrumb, title, tagsView } = defaultSettings;
+const { showHeader, showBreadcrumb, title, tagsView, hasTopRoute } = defaultSettings;
 
 const state = {
+    hasTopRoute,
     tagsView,
     title,
     showHeader,

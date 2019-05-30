@@ -1,7 +1,7 @@
 import { getToken } from '../utils/auth';
 import store from '../store';
 import $console from '@/sharegoods-ui/lib/utils/logger';
-
+import { Message } from 'element-ui';
 const whiteList = ['/login', '/404'];
 
 export default function (router) {
@@ -41,7 +41,16 @@ export default function (router) {
                             });
                         });
                     }).catch((err) => {
-                        $console.error(err);
+                        store.dispatch('LogOut').then(() => {
+                            Message({
+                                message: err.message || '获取用户信息出错',
+                                type: 'error',
+                                duration: 5 * 1000
+                            });
+                            setTimeout(() => {
+                                location.reload(true);
+                            }, 2000);
+                        });
                     });
                 } else {
                     next();
