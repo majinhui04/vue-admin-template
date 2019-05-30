@@ -1,13 +1,7 @@
 import defaultSettings from '../../settings';
 
-const { showHeader, showBreadcrumb, title, tagsView, hasTopRoute } = defaultSettings;
-
 const state = {
-    hasTopRoute,
-    tagsView,
-    title,
-    showHeader,
-    showBreadcrumb
+    ...defaultSettings
 };
 
 const mutations = {
