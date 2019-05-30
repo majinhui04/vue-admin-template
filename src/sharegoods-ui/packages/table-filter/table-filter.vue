@@ -4,6 +4,9 @@
             <el-col :span="field.cols" v-for="(field, index) in config.fields" :key="index">
                 <component
                     :key="index"
+                    :type="field.type"
+                    :format="field.format"
+                    :value-format="field.valueFormat"
                     :is="field.fieldType" :label="field.label"
                     :value="formData[field.name]"
                     :multiple="field.multiple"

@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapGetters, mapState } from 'vuex';
 
     export default {
         mounted() {
@@ -37,7 +37,9 @@
             const rootName = matched[0].name;
             const root = this.routers.filter(item => item.name === rootName)[0];
             const navList = root.children || [];
-            this.navList = navList.filter(item => item.meta.top === true);
+            if (this.hasTopRoute) {
+                this.navList = navList.filter(item => item.meta.top === true);
+            }
         },
         data() {
             return {
@@ -45,6 +47,9 @@
             };
         },
         computed: {
+            ...mapState({
+                hasTopRoute: state => state.settings.hasTopRoute
+            }),
             ...mapGetters(['userInfo', 'routers'])
         },
         methods: {

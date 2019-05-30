@@ -30,7 +30,7 @@
                         <template v-else-if="col.buttons">
                             <div>
                                 <el-button :type="item.type || 'primary'" v-for="(item,i) in col.buttons" :key="i"
-                                           @click="item.onClick(scope.row)">{{item.label}}
+                                           @click="item.onClick(scope.row)">{{item.customRender?item.customRender(scope.row):item.label}}
                                 </el-button>
                             </div>
                         </template>
