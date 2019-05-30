@@ -1,10 +1,15 @@
 module.exports = {
-    title: 'Vue Element Admin',
+    title: '后台管理系统',
     /**
      * @type {boolean} true | false
      * @description Whether show the top route
      */
     hasTopRoute: true,
+    /**
+     * @type {boolean} true | false
+     * @description Whether show the header
+     */
+    showSidebarToggle: false,
     /**
      * @type {boolean} true | false
      * @description Whether show the header

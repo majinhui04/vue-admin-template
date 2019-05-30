@@ -1,12 +1,12 @@
 <template>
     <div class="portal-sidebar" style="z-index: 8;">
         <div class="portal-sidebar-content">
-            <div class="head">
+            <div class="head" v-if="showSidebarToggle">
                 <a href="javascript:void(0)" @click="ToggleSideBar">
                     <i class="icon icon-sidebar-toggle" :class="{'rotate':!sidebar.opened}"></i>
                 </a>
             </div>
-            <div class="yun-head" v-if="APP_TITLE">{{APP_TITLE}}</div>
+            <div class="yun-head title" v-if="title">{{title}}</div>
             <div class="main">
                 <el-menu
                     class="portal-menu"
@@ -47,7 +47,9 @@
         },
         computed: {
             ...mapState({
-                hasTopRoute: state => state.settings.hasTopRoute
+                title: state => state.settings.title,
+                hasTopRoute: state => state.settings.hasTopRoute,
+                showSidebarToggle: state => state.settings.showSidebarToggle
             }),
             ...mapGetters(['routers', 'sidebar', 'userInfo']),
             isCollapse() {
