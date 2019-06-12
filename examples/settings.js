@@ -1,6 +1,15 @@
 module.exports = {
-    title: 'Vue Element Admin',
-
+    title: '后台管理系统',
+    /**
+     * @type {boolean} true | false
+     * @description Whether show the top route
+     */
+    hasTopRoute: true,
+    /**
+     * @type {boolean} true | false
+     * @description Whether show the header
+     */
+    showSidebarToggle: false,
     /**
      * @type {boolean} true | false
      * @description Whether show the header
@@ -12,11 +21,11 @@ module.exports = {
      */
     showBreadcrumb: true,
     /**
-     * todo
+     * todo 多级目录无法缓存
      * @type {boolean} true | false
      * @description Whether need tagsView
      */
-    tagsView: true,
+    tagsView: false,
     /**
      * todo
      * @type {string | array} 'production' | ['production', 'development']

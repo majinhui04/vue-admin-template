@@ -80,12 +80,12 @@ router.beforeEach((to, from, next) => {
     }
 });
 // 样式控制
-router.afterEach((to, from) => {
+/*router.afterEach((to, from) => {
     const meta = to.meta || {};
     const bodyClass = meta.bodyClass || '';
     const body = document.getElementsByTagName('body')[0];
     try {
         body.className = bodyClass;
     } catch (e) {}
-});
+});*/
 export default router;

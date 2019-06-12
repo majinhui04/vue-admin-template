@@ -14,6 +14,8 @@ import store from './store';
 import './app.scss';
 // 注册全局API
 import { API } from './api';
+import demoBlock from './components/demo-block.vue';
+import hljs from 'highlight.js';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, {
@@ -23,6 +25,15 @@ Vue.use(SharegoodsUI);
 Vue.prototype.$api = API;
 Vue.prototype.$console = $console;
 window.$console = $console;
+Vue.component('demo-block', demoBlock);
+
+router.afterEach(route => {
+    // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
+    Vue.nextTick(() => {
+        const blocks = document.querySelectorAll('pre code:not(.hljs)');
+        Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+    });
+});
 new Vue({
     router,
     store,
