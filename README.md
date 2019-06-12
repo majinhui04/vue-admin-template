@@ -141,84 +141,57 @@ http {
 ## API Reference
 e.g
 ```javascript
-import HttpMiddleware from '@/igrow/http/http-middleware';
-const HTTP_CONFIG = {
-    // 所有接口前缀
-    baseURL: '/api',
-    // 所有接口超时时间
-    timeout: 30000,
-    // 全局接口请求前的钩子
-    transformRequest({ label, data }) {
-        $console.log(`[HTTP请求:${label} start]`, data);
-    },
-    // 全局接口请求后的钩子
-    transformResponse({ response, label }) {
-        $console.log(`[HTTP请求:${label} end]`, data);
-        return response;
+import Vue from 'vue';
+import Urls from './api.js';
+import store from '../store';
+import { getToken, setToken } from '@/sharegoods-ui/lib/utils/auth';
+import { Message } from 'element-ui';
+import $console from '@/sharegoods-ui/lib/utils/logger';
+import HttpClient from '@/sharegoods-ui/lib/utils/http/http-client';
+
+Vue.use(HttpClient, {
+    Message,
+    Urls,
+    transformRequest({ path, data }) {
+        $console.log(`[HTTP请求:${path} start]`, data);
     },
     // 全局接口请求数据成功条件
     getResponseSuccess(response) {
-        if (response.code === 0 || response.code === 10000) {
+        if ([0, 20000, 10000].includes(response.code)) {
             return true;
         }
         return false;
     },
-    // 全局接口请求错误的钩子
-    handleError({ response, meta }) {
-        if(meta.isShowError) {
-            $console.log(`[HTTP请求失败] : ${response.url}`, response);
+    transformResponse({ response, path }) {
+        const body = response.data || {};
+        const data = body.data || {};
+        const token = body.token || data.token;
+        response.message = response.message || response.msg;
+        if (token) {
+            setToken(token);
         }
-        
+        // todo 用户登录失效
+        if ([10010, 10011].includes(response.code)) {
+            store.dispatch('LogOut').then(() => {
+                location.reload(true);
+            });
+        }
+        $console.log(`[HTTP请求:${path} end]`, response);
+        return response;
     },
-    // 全局接口请求成功的钩子
-    handleSuccess({ response, meta }) {
+    getAccessToken() {
+        const token = getToken() || '';
+        return { 'token': token };
     }
-};
-
-const { API } = new HttpMiddleware(
-    [
-        {
-            // name 必填
-            name: 'userLevelListAll',
-            // label 可选
-            label: '用户等级',
-            // path 必填
-            path: '/data/userlevel',
-            // method 可选 默认post
-            method: 'get',
-            // config 可选 接口自定义请求头以及配置
-            config:{
-                timeout:10000,
-                headers:{test:1}
-            },
-            // processData 可选 接口请求前处理参数
-            processData(data) {
-                if (data.category && !data.grade) {
-                    data.grade = 1;
-                }
-                return data;
-            },
-            // success 可选 接口成功后处理数据
-            success(res) {
-                const list = res.data || [];
-                list.forEach(item => {
-                    item._uuid = item.level;
-                    item._label = item.remark;
-                });
-                return res;
-            }
-        }
-    ], HTTP_CONFIG);
-
-// 可选 接口额外参参数（自定义）与全局配置handleSuccess、handleError配合使用
-let meta = {isShowError:true};
-// 请求参数
-let data = {account:'damon',password:'123456'};
-API.userLevelListAll(data,meta).then(res => {
-    console.log('成功信息', res);
-}).catch(err => {
-    console.log('错误信息', err.message);
 });
+const http = Vue.http;
+const API = http.httpFactory(Urls);
+export {
+    API
+};
+export default http;
+
+
 ```
 
 
