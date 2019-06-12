@@ -17,6 +17,24 @@ module.exports = {
             title: '后台管理系统'
         }
     },
+    configureWebpack: (config) => {
+        config.module.rules.push({
+            test: /\.md$/,
+            use: [
+                {
+                    loader: 'vue-loader',
+                    options: {
+                        compilerOptions: {
+                            preserveWhitespace: false
+                        }
+                    }
+                },
+                {
+                    loader: path.resolve(__dirname, './build/md-loader/index.js')
+                }
+            ]
+        })
+    },
     // 允许对内部的 webpack 配置进行更细粒度的修改。
     chainWebpack: (config) => {
         // 命名

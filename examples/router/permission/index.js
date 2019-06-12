@@ -6,7 +6,7 @@ export default [
         path: '/',
         name: 'root',
         component: portal,
-        redirect: { name: 'example' },
+        redirect: { name: 'components' },
         children: [
             ...exampleRoute
         ]

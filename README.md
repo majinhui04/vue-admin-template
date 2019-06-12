@@ -77,6 +77,16 @@ VUE_APP_BASE_TARGET='http://192.168.32.138:8080/bi'
 > VUE_APP_BASE_TARGET 注释后默认为本地mock
 
 ## Release
+打包后的文件在`dist`文件夹
+
+```bash
+# Install dependencies
+npm install
+
+# Build for production with minification
+npm run build
+
+```
 
 ### nginx相关改动
 
@@ -93,8 +103,8 @@ http {
     server {
         listen       80;
         # 访问域名
-        server_name admin.sharegoodsmall.com;
-        location /gateway {
+        server_name static.mr.com;
+        location /api {
             proxy_redirect     off;
             proxy_set_header   Host    $host;
             proxy_set_header   X-Real-IP   $remote_addr;
@@ -102,11 +112,11 @@ http {
             proxy_pass_header Set-Cookie;
             proxy_set_header Cookie $http_cookie;
             # 反向代理接口
-    		proxy_pass   http://api.sharegoodsmall.com/gateway;
+    		proxy_pass   http://127.0.0.1:8888/api;
         }
         # vue history 模式需要配置 否则404错误
         location / {
-            # todo
+            # 请替换此路径
             root  /Users/damon/Documents/webapp/crm/web-admin-template/dist;
             index  index.html index.htm;
             try_files $uri $uri/ /index.html;
@@ -118,8 +128,7 @@ http {
             # 静态资源默认缓存14天
             if ($request_filename ~ .*\.(js|css|png|jpg)$) {
                 expires 336h;
-            } 
-            # proxy_pass http://127.0.0.1:9001;   
+            }
         }
      }
 

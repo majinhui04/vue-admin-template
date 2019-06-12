@@ -1,11 +1,7 @@
 import defaultSettings from '../../settings';
 
-const { showHeader, showBreadcrumb, title } = defaultSettings;
-
 const state = {
-    title,
-    showHeader,
-    showBreadcrumb
+    ...defaultSettings
 };
 
 const mutations = {
