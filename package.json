@@ -1,0 +1,48 @@
+{
+    "name": "vue-admin-template",
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "A template for Admin Platform",
+    "author": "504397517@qq.com",
+    "scripts": {
+        "precommit": "lint-staged",
+        "dev": "npm run serve",
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    },
+    "lint-staged": {
+        "src/**/*.{js,vue}": [
+            "eslint"
+        ]
+    },
+    "dependencies": {
+        "axios": "0.18.0",
+        "babel-polyfill": "6.26.0",
+        "element-ui": "2.8.2",
+        "js-cookie": "2.2.0",
+        "moment": "2.24.0",
+        "vue": "2.5.17",
+        "vue-router": "3.0.1",
+        "vuex": "3.0.1"
+    },
+    "devDependencies": {
+        "@babel/core": "7.0.0",
+        "@babel/register": "7.0.0",
+        "@vue/cli-plugin-babel": "3.7.0",
+        "@vue/cli-plugin-eslint": "3.7.0",
+        "@vue/cli-service": "3.7.0",
+        "@vue/eslint-config-standard": "4.0.0",
+        "babel-eslint": "10.0.1",
+        "chalk": "2.4.1",
+        "chokidar": "2.1.5",
+        "eslint": "5.16.0",
+        "eslint-plugin-vue": "5.0.0",
+        "husky": "1.2.1",
+        "lint-staged": "8.1.0",
+        "mockjs": "1.0.1-beta3",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.1.0",
+        "vue-template-compiler": "2.5.17"
+    }
+}
