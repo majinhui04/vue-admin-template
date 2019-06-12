@@ -14,6 +14,8 @@ Attributes
 | responseFormatter       | Function      |       | 获取异步数据的列表字段以及分页字段   |
 
 
+## SgTableFilter
+todo
 
 # changelog
 
