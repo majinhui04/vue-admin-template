@@ -1,11 +1,14 @@
 import TableFilter from '../packages/table-filter/index.js';
 import TableView from '../packages/table-view/index.js';
+import TableEditor from '../packages/table-editor/index.js';
 import Loading from '../packages/loading/index.js';
+import '../packages/portal/styles/index.scss';
 
 const components = [
     TableFilter,
     TableView,
-    Loading
+    Loading,
+    TableEditor
 ];
 
 const install = function (Vue, opts = {}) {
@@ -20,6 +23,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-    version: '1.0.0',
+    version: '1.0.1',
     install
 };

@@ -44,7 +44,8 @@ export default [
                 code: 0,
                 data: {
                     token: 'uuid',
-                    account
+                    account,
+                    userName: account
                 }
             };
         }

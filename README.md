@@ -1,4 +1,4 @@
-# web-admin-template
+# vue-admin-template
 
 ![](https://www.sharegoodsmall.com/images/sglogo.png)
 

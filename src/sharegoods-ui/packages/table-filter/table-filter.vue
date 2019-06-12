@@ -7,6 +7,7 @@
                     :type="field.type"
                     :format="field.format"
                     :value-format="field.valueFormat"
+                    :default-time="field.defaultTime"
                     :is="field.fieldType" :label="field.label"
                     :value="formData[field.name]"
                     :multiple="field.multiple"
@@ -61,7 +62,7 @@
             },
             reset() {
                 const formData = this.formData;
-                for (let name in formData) {
+                for (const name in formData) {
                     if (typeof formData[name] === 'string') {
                         this.formData[name] = '';
                     } else {

@@ -5,7 +5,7 @@ function resolve(dir) {
     return path.join(__dirname, dir);
 }
 
-const port = 9530;
+const port = 9891;
 module.exports = {
     outputDir: 'dist',
     publicPath: '/',
@@ -13,7 +13,7 @@ module.exports = {
     lintOnSave: false,
     pages: {
         index: {
-            entry: './src/views/example/main.js',
+            entry: './examples/main.js',
             title: '后台管理系统'
         }
     },
@@ -21,10 +21,7 @@ module.exports = {
     chainWebpack: (config) => {
         // 命名
         config.resolve.alias
-            .set('@', resolve('src'))
-            .set('ASSET', resolve('src/assets'))
-            .set('COMPONENT', resolve('src/components/common'))
-            .set('UTIL', resolve('src/utils'));
+            .set('@', resolve('src'));
         // 打包文件带hash
         config.output.filename('[name].[hash].js').end();
 

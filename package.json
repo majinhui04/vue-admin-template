@@ -1,15 +1,12 @@
 {
-    "name": "web-admin-template",
+    "name": "vue-admin-template",
     "version": "1.0.0",
     "license": "MIT",
-    "description": "后台管理系统",
-    "author": "majinhui@meeruu.com",
-    "private": true,
+    "description": "A template for Admin Platform",
+    "author": "504397517@qq.com",
     "scripts": {
         "precommit": "lint-staged",
         "dev": "npm run serve",
-        "dev:mock": "node server/mock.js",
-        "dev:server": "node server/app.js",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint"

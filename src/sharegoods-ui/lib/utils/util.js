@@ -8,7 +8,7 @@ export function hasOwn(obj, key) {
 }
 
 function extend(to, _from) {
-    for (let key in _from) {
+    for (const key in _from) {
         to[key] = _from[key];
     }
     return to;
