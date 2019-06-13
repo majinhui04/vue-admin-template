@@ -113,6 +113,16 @@ export default [
                 data: 'success'
             };
         }
+    },
+    {
+        url: '/article/export',
+        type: 'post',
+        response: _ => {
+            return {
+                code: 0,
+                data: 'success'
+            };
+        }
     }
 ];
 

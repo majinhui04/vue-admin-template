@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import flatry from '../lib/utils/flatry';
+    import flatry from '../../lib/utils/flatry';
 
     export default {
         name: 'SgExportButton',

@@ -2,9 +2,11 @@ import TableFilter from '../packages/table-filter/index.js';
 import TableView from '../packages/table-view/index.js';
 import TableEditor from '../packages/table-editor/index.js';
 import Loading from '../packages/loading/index.js';
+import ExportButton from '../packages/export-button/index.js';
 import '../packages/portal/styles/index.scss';
 
 const components = [
+    ExportButton,
     TableFilter,
     TableView,
     Loading,

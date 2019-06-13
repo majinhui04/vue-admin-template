@@ -23,9 +23,9 @@ Attributes
         <sg-table-view :config="tableConfig" :tabs="tabs" :tools="tools" ref="sgTableView"
                        :response-formatter="responseFormatter"
                        :params-formatter="{'activeName':'status','pageSize':'limit'}">
-            <button slot="tools">
-                自定义操作按钮位置
-            </button>
+            <sg-export-button slot="tools" api="/article/export">
+                导出
+            </sg-export-button>
             <el-table-column align="center" slot="author" label="上课了" width="120">
                 <template slot-scope="scope"><a href="javascript:void(0)" @click="handleLink(scope.row)">{{
                     scope.row.author }}</a></template>
