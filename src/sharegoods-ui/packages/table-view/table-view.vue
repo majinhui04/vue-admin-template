@@ -144,6 +144,7 @@
             },
             // 点击tab触发数据加载
             handleTabClick(k) {
+                this.activeName = k.name
                 this.fetchList({
                     page: 1
                 });
