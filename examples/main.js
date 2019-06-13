@@ -16,6 +16,19 @@ import './app.scss';
 import { API } from './api';
 import demoBlock from './components/demo-block.vue';
 import hljs from 'highlight.js';
+import { mockXHR } from '../mock'
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online! ! !
+ */
+
+if (process.env.NODE_ENV === 'production') {
+    mockXHR()
+}
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, {
@@ -26,7 +39,6 @@ Vue.prototype.$api = API;
 Vue.prototype.$console = $console;
 window.$console = $console;
 Vue.component('demo-block', demoBlock);
-
 router.afterEach(route => {
     // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
     Vue.nextTick(() => {
