@@ -13,6 +13,10 @@ module.exports = {
     lintOnSave: false,
     pages: {
         index: {
+            entry: './src/views/document/entry.js',
+            title: '文档'
+        },
+        admin: {
             entry: './examples/main.js',
             title: '后台管理系统'
         }

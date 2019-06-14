@@ -1,0 +1,31 @@
+{
+    "zh-CN": [
+        {
+            "name": "Element Angular",
+            "href": "https://element-angular.faas.ele.me/"
+        },
+        {
+            "name": "开发指南",
+            "children": [
+                {
+                    "path": "/installation",
+                    "name": "安装"
+                }
+            ]
+        },
+        {
+            "name": "组件",
+            "groups": [
+                {
+                    "groupName": "Basic",
+                    "list": [
+                        {
+                            "path": "/layout",
+                            "title": "Layout 布局"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
