@@ -250,12 +250,7 @@
                         duration: 2000
                     });
                     this.$refs['sgTableView'].fetchList();
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    });
-                });
+                })
             },
             responseFormatter(res) {
                 const body = res.data || {};
