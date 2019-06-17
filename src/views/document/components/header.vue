@@ -274,11 +274,11 @@
                         <!-- logo -->
                         <slot>
                             <img
-                                src="../assets/images/element-logo.svg"
+                                src="https://www.sharegoodsmall.com/images/sglogo.png"
                                 alt="element-logo"
                                 class="nav-logo">
                             <img
-                                src="../assets/images/element-logo-small.svg"
+                                src="https://www.sharegoodsmall.com/images/sglogo.png"
                                 alt="element-logo"
                                 class="nav-logo-small">
                         </slot>
@@ -291,38 +291,8 @@
                     <li class="nav-item">
                         <router-link
                             active-class="active"
-                            :to="`/${ lang }/guide`">{{ langConfig.guide }}
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link
-                            active-class="active"
                             :to="`/${ lang }/component`">{{ langConfig.components }}
                         </router-link>
-                    </li>
-
-                    <!-- 版本选择器 -->
-                    <li class="nav-item nav-versions" v-show="isComponentPage">
-                        <el-dropdown
-                            trigger="click"
-                            class="nav-dropdown"
-                            :class="{ 'is-active': verDropdownVisible }">
-                              <span>
-                                {{ version }}
-                                <i class="el-icon-arrow-down el-icon--right"></i>
-                              </span>
-                            <el-dropdown-menu
-                                slot="dropdown"
-                                class="nav-dropdown-list"
-                                @input="handleVerDropdownToggle">
-                                <el-dropdown-item
-                                    v-for="item in Object.keys(versions)"
-                                    :key="item"
-                                    @click.native="switchVersion(item)">
-                                    {{ item }}
-                                </el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
                     </li>
                 </ul>
             </div>
