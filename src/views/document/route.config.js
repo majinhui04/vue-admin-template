@@ -20,6 +20,26 @@ let route = [
                 component: resolve => require(['./docs/zh-CN/installation.md'], resolve)
             },
             {
+                path: 'capital',
+                meta: {
+                    title: 'capital',
+                    description: 'capital',
+                    lang
+                },
+                name: 'component-capital',
+                component: resolve => require(['./docs/zh-CN/capital.md'], resolve)
+            },
+            {
+                path: 'query',
+                meta: {
+                    title: 'query',
+                    description: 'query',
+                    lang
+                },
+                name: 'component-query',
+                component: resolve => require(['./docs/zh-CN/query.md'], resolve)
+            },
+            {
                 path: 'layout',
                 meta: {
                     title: 'layout',

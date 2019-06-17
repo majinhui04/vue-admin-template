@@ -10,20 +10,32 @@ import MainFooter from './components/footer';
 import MainHeader from './components/header';
 import SideNav from './components/side-nav';
 import FooterNav from './components/footer-nav';
+import SharegoodsUI from '@/sharegoods-ui/lib';
+import moment from 'moment';
 
 import './demo-styles/index.scss';
 import './assets/styles/common.css';
 import './assets/styles/fonts/style.css';
 import icon from './icon.json';
+import { API } from './api';
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI, {});
+Vue.use(ElementUI, {
+    size: 'small'
+});
 Vue.use(VueRouter);
 Vue.component('demo-block', demoBlock);
 Vue.component('main-footer', MainFooter);
 Vue.component('main-header', MainHeader);
 Vue.component('side-nav', SideNav);
 Vue.component('footer-nav', FooterNav);
+
+Vue.filter('formatDate', function (value) {
+    return moment(value).format('YYYY-MM-DD hh:mm:ss');
+});
+
+Vue.use(SharegoodsUI);
+Vue.prototype.$api = API;
 
 const globalEle = new Vue({
     data: { $isEle: false } // 是否 ele 用户

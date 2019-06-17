@@ -65,3 +65,8 @@
         }
     };
 </script>
+<style lang="scss">
+    body {
+        background: #FFF !important;
+    }
+</style>

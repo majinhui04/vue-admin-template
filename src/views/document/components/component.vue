@@ -63,7 +63,7 @@
         }
 
         .content {
-            padding-top: 50px;
+            padding-top: 0px !important;
 
             > {
 
