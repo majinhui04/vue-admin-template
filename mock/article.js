@@ -118,6 +118,7 @@ export default [
         url: '/article/export',
         type: 'post',
         response: _ => {
+            sleep(1.5 * 1000);
             return {
                 code: 0,
                 data: 'success'

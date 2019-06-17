@@ -19,6 +19,11 @@ Attributes
 ```html
 <template>
     <div class="content">
+    <el-cascader
+      :options="options"
+      @active-item-change="handleItemChange"
+      :props="props"
+    ></el-cascader>
         <sg-table-filter :config="filterConfig" v-model="formData" @submit="search"></sg-table-filter>
         <sg-table-view :config="tableConfig" :tabs="tabs" :tools="tools" ref="sgTableView"
                        :response-formatter="responseFormatter"
@@ -40,6 +45,17 @@ Attributes
         components: {},
         data() {
             return {
+                options: [{
+                          label: '江苏',
+                          cities: []
+                        }, {
+                          label: '浙江',
+                          cities: []
+                        }],
+                        props: {
+                          value: 'label',
+                          children: 'cities'
+                        },
                 formData: {
                     code: '123',
                     orderType: 'key1',
@@ -221,6 +237,20 @@ Attributes
             this.queryOrderType();
         },
         methods: {
+            handleItemChange(val) {
+                    console.log('active item:', val);
+                    setTimeout(_ => {
+                      if (val.indexOf('江苏') > -1 && !this.options[0].cities.length) {
+                        this.options[0].cities = [{
+                          label: '南京'
+                        }];
+                      } else if (val.indexOf('浙江') > -1 && !this.options[1].cities.length) {
+                        this.options[1].cities = [{
+                          label: '杭州'
+                        }];
+                      }
+                    }, 300);
+                  },
             handleLink(row) {
                 console.log(1234, row);
             },
