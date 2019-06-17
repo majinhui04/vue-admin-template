@@ -40,6 +40,16 @@ let route = [
                 component: resolve => require(['./docs/zh-CN/query.md'], resolve)
             },
             {
+                path: 'export-button',
+                meta: {
+                    title: 'export-button',
+                    description: 'export-button',
+                    lang
+                },
+                name: 'component-export-button',
+                component: resolve => require(['./docs/zh-CN/export-button.md'], resolve)
+            },
+            {
                 path: 'layout',
                 meta: {
                     title: 'layout',
