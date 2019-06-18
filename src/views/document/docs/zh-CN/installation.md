@@ -56,3 +56,13 @@ WebStorm or Intellij IDEA
 - 设置代码
     
     ![avatar](../assets/img/1.png)
+    
+    ![avatar](../assets/img/3.png)
+    
+    ![avatar](../assets/img/2.png)
+    
+    ![avatar](../assets/img/4.png)
+    
+    ![avatar](../assets/img/5.png)
+    
+    
