@@ -1,5 +1,10 @@
 export default [
     {
+        name: 'articleStatusList',
+        path: '/article/status/list',
+        method: 'get'
+    },
+    {
         name: 'articleList',
         path: '/article/list',
         method: 'get'

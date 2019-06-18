@@ -127,22 +127,11 @@
                         },
                         {
                             name: 'status',
-                            label: '退款状态',
+                            label: '状态',
                             fieldType: 'SelectList',
                             options: [{
                                 "label":"请选择",
                                 "value":""
-                            },{
-                                "label":"处理中",
-                                "value":"1"
-                            },
-                            {
-                                "label":"失败",
-                                "value":"2"
-                            },
-                            {
-                                "label":"关闭",
-                                "value":"3"
                             }],
                             cols: 12
                         }
@@ -234,9 +223,16 @@
             };
         },
         created() {
-            
+            this.initArticleStatusList()
         },
         methods: {
+            initArticleStatusList(){
+                let fields = this.filterConfig.fields;
+                let options = fields.filter(item=>item.name === 'status')[0].options;
+                this.$api.articleStatusList(null,{isShowError:true}).then(res=>{
+                    options.push(...res.data);
+                });
+            },
             handleDelete(row) {
                 this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -250,7 +246,7 @@
                         duration: 2000
                     });
                     this.$refs['sgTableView'].fetchList();
-                })
+                });
             },
             responseFormatter(res) {
                 const body = res.data || {};

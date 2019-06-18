@@ -42,3 +42,17 @@ yum install git
 ```
 
 [window-git下载地址](https://git-scm.com/)
+
+
+### IDE准备
+
+WebStorm or Intellij IDEA 
+
+- 安装vue.js 
+
+    File -> Settings -> Plugins -> Browse respositoties...
+    搜索vue.js，右侧提示Install（截图时已安装，未安装会提示Install）。安装成功后需要重启IDEA。
+    
+- 设置代码
+    
+    ![avatar](../assets/img/1.png)

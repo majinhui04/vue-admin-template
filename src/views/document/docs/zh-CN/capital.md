@@ -12,10 +12,10 @@ git clone http://git.mr.com/frontend/web-admin-capital.git
 git cd web-admin-capital
 
 # 新建分支
-git checkout -b develop-v1-2-0-feature-demo origin/develop
+git checkout -b develop-v1-2-0-feature-demo origin/release
 
-# 安装依赖 or npm install --registry=https://registry.npm.taobao.org
-mrnpm install 
+# 安装依赖 or mrnpm install 
+npm install --registry=https://registry.npm.taobao.org
 ```
 
 项目根目录新建文件`.env.local`，`VUE_APP_BASE_TARGET`对应联调地址，如果注释掉`VUE_APP_BASE_TARGET`则走本地mock数据
