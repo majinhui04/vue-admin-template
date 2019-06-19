@@ -33,6 +33,10 @@
                             "title": "导出按钮"
                         },
                         {
+                            "path": "/chart",
+                            "title": "图表"
+                        },
+                        {
                             "path": "/layout",
                             "title": "Layout 布局"
                         }

@@ -1,6 +1,16 @@
 let lang = 'zh-CN';
 let route = [
     {
+        path: '/template',
+        meta: {
+            title: 'template',
+            description: 'template',
+            lang
+        },
+        name: 'template',
+        component: resolve => require(['./pages/zh-CN/template.vue'], resolve)
+    },
+    {
         path: '/zh-CN',
         redirect: `/${ lang }/component`
     },
@@ -48,6 +58,16 @@ let route = [
                 },
                 name: 'component-export-button',
                 component: resolve => require(['./docs/zh-CN/export-button.md'], resolve)
+            },
+            {
+                path: 'chart',
+                meta: {
+                    title: 'chart',
+                    description: 'chart',
+                    lang
+                },
+                name: 'component-chart',
+                component: resolve => require(['./docs/zh-CN/chart.md'], resolve)
             },
             {
                 path: 'layout',

@@ -3,9 +3,11 @@ import TableView from '../packages/table-view/index.js';
 import TableEditor from '../packages/table-editor/index.js';
 import Loading from '../packages/loading/index.js';
 import ExportButton from '../packages/export-button/index.js';
+import SgChart from '../packages/chart/index.js';
 import '../packages/portal/styles/index.scss';
 
 const components = [
+    SgChart,
     ExportButton,
     TableFilter,
     TableView,
@@ -25,6 +27,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-    version: '1.0.1',
+    version: '1.1.0',
     install
 };
