@@ -115,9 +115,24 @@ export default [
         }
     },
     {
+        url: '/article/status/list',
+        type: 'get',
+        response: _ => {
+            return {
+                code: 0,
+                data: [
+                    { label: '已发布', value: 'published' },
+                    { label: '草稿', value: 'draft' },
+                    { label: '已删除', value: 'deleted' }
+                ]
+            };
+        }
+    },
+    {
         url: '/article/export',
         type: 'post',
         response: _ => {
+            sleep(1.5 * 1000);
             return {
                 code: 0,
                 data: 'success'

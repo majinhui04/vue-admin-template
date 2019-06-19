@@ -13,6 +13,11 @@ module.exports = {
     lintOnSave: false,
     pages: {
         index: {
+            entry: './src/views/document/entry.js',
+            title: '文档',
+            template: './src/views/document/index.tpl'
+        },
+        admin: {
             entry: './examples/main.js',
             title: '后台管理系统'
         }
@@ -33,7 +38,10 @@ module.exports = {
                     loader: path.resolve(__dirname, './build/md-loader/index.js')
                 }
             ]
-        })
+        });
+        config.externals = {
+            'echarts': 'echarts'
+        };
     },
     // 允许对内部的 webpack 配置进行更细粒度的修改。
     chainWebpack: (config) => {

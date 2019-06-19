@@ -26,7 +26,6 @@ Vue.prototype.$api = API;
 Vue.prototype.$console = $console;
 window.$console = $console;
 Vue.component('demo-block', demoBlock);
-
 router.afterEach(route => {
     // https://github.com/highlightjs/highlight.js/issues/909#issuecomment-131686186
     Vue.nextTick(() => {
