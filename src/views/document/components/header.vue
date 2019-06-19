@@ -294,6 +294,24 @@
                             :to="`/${ lang }/component`">{{ langConfig.components }}
                         </router-link>
                     </li>
+                    <!-- gap -->
+                    <li class="nav-item" v-show="isComponentPage">
+                        <div class="nav-gap"></div>
+                    </li>
+                    <li class="nav-item">
+                        <el-dropdown
+                            trigger="click"
+                            class="nav-dropdown"
+                            :class="{ 'is-active': verDropdownVisible }">
+                              <span>
+                                {{ version }}
+                                <i class="el-icon-arrow-down el-icon--right"></i>
+                              </span>
+                        </el-dropdown>
+                        <!--<a href="javascript:void(0)">{{version}}</a>-->
+                    </li>
+                    <li class="nav-item">
+                    </li>
                 </ul>
             </div>
         </header>
@@ -302,8 +320,10 @@
 <script>
     import compoLang from '../i18n/component.json';
     import Element from 'element-ui';
+    import Sharegoods from '@/sharegoods-ui/lib';
     import bus from '../bus';
-    const { version } = Element;
+
+    const { version } = Sharegoods;
 
     export default {
         data() {
@@ -324,8 +344,7 @@
 
         mixins: [],
 
-        components: {
-        },
+        components: {},
 
         computed: {
             lang() {
