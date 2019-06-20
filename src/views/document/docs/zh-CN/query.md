@@ -39,7 +39,12 @@
         <sg-table-view :config="tableConfig" :tabs="tabs" ref="sgTableView" :params-formatter="{'activeName':'key'}" :tools="tools">
         
             <sg-export-button slot="tools" api="/article/export" type="warning">批量导出</sg-export-button>
-            
+           
+            <el-table-column align="center" slot="download" label="下载" width="100">
+                <template slot-scope="scope">
+                    <sg-export-button api="/article/export" tips="正在导出数据,请稍后" :before-export="handleExport(scope.row)">导出</sg-export-button>
+                </template>
+            </el-table-column>
             <el-table-column align="center" slot="actions" label="操作" width="220">
                 <template slot-scope="scope">
                     <template v-if="scope.row.status==='draft'">
@@ -186,6 +191,10 @@
                             type: 'selection'
                         },
                         {
+                            type: 'slot',
+                            prop: 'download'
+                        },
+                        {
                             label: '阅读量',
                             prop: 'pageviews',
                             customRender: (row) => {
@@ -226,6 +235,15 @@
             this.initArticleStatusList()
         },
         methods: {
+            // 在列表初始化的时候就会执行一遍 所以需要中间函数处理
+            handleExport(row){
+                const fn = function() {
+                  return {
+                      author:row.author
+                  }
+                }
+                return  fn;
+            },
             initArticleStatusList(){
                 let fields = this.filterConfig.fields;
                 let options = fields.filter(item=>item.name === 'status')[0].options;

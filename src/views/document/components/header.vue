@@ -299,16 +299,7 @@
                         <div class="nav-gap"></div>
                     </li>
                     <li class="nav-item">
-                        <el-dropdown
-                            trigger="click"
-                            class="nav-dropdown"
-                            :class="{ 'is-active': verDropdownVisible }">
-                              <span>
-                                {{ version }}
-                                <i class="el-icon-arrow-down el-icon--right"></i>
-                              </span>
-                        </el-dropdown>
-                        <!--<a href="javascript:void(0)">{{version}}</a>-->
+                        <a href="javascript:void(0)">{{version}}</a>
                     </li>
                     <li class="nav-item">
                     </li>
