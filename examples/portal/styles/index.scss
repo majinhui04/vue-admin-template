@@ -246,14 +246,6 @@ body, html {
 
     }
     .portal-content-view {
-        /*position: absolute;
-        left: 0;
-        top: 50px;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        overflow-y: auto;*/
-
     }
     .portal-son {
         height: 100%;
@@ -280,18 +272,8 @@ body, html {
         background-size: cover;
         vertical-align: middle;
 
-        &.icon-red {
-            width: 10px;
-            height: 10px;
-            background-image: url("/static/img/icon/red@2x.png");
-        }
-        &.icon-green {
-            width: 10px;
-            height: 10px;
-            background-image: url("/static/img/icon/green@2x.png");
-        }
         &.icon-sidebar-toggle {
-            background-image: url("/static/img/icon/icon_zhankai@2x.png");
+            background-image: url("../assets/img/icon_zhankai@2x.png");
         }
     }
     .router-link-active {
