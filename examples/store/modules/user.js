@@ -1,4 +1,4 @@
-import { getToken, setToken, removeToken, setUserInfo, getUserInfo, removeUserInfo } from '@/sharegoods-ui/lib/utils/auth';
+import { getToken, setToken, removeToken, setUserInfo, getUserInfo, removeUserInfo } from '../../utils/auth';
 import { API } from '../../api';
 
 const user = {

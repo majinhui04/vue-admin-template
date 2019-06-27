@@ -1,4 +1,4 @@
-import portal from '@/sharegoods-ui/packages/portal/common/portal';
+import portal from '../../portal/common/portal';
 import exampleRoute from './example';
 
 export default [

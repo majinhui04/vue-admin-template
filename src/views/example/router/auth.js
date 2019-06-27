@@ -1,6 +1,6 @@
 import { getToken } from '../utils/auth';
 import store from '../store';
-import $console from '@/sharegoods-ui/lib/utils/logger';
+import $console from 'sharegoods-admin-extends/lib/utils/logger';
 import { Message } from 'element-ui';
 const whiteList = ['/login', '/404'];
 
