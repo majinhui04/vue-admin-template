@@ -1,6 +1,5 @@
-import portalMain from '@/sharegoods-ui/packages/portal/common/portal-main';
-import portalView from '@/sharegoods-ui/packages/portal/common/portal-view';
-import componentView from '../../components/component';
+import portalMain from '../../portal/common/portal-main';
+import portalView from '../../portal/common/portal-view';
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -47,28 +46,9 @@ export default [
             title: '组件'
         },
         redirect: {
-            name: 'table-view'
+            name: 'simple'
         },
         children: [
-            {
-                alwaysShow: true,
-                name: 'common',
-                path: 'common',
-                component: componentView,
-                meta: {
-                    icon: 'font_family icon-shangpin-xuanzhong',
-                    title: '组件'
-                },
-                children: [
-                    {
-                        name: 'table-view',
-                        path: 'table-view',
-                        meta: {
-                            title: 'table-view'
-                        },
-                        component: resolve => require(['@/sharegoods-ui/docs/table-view.md'], resolve)
-                    }]
-            },
             {
                 name: 'icon',
                 path: 'icon',

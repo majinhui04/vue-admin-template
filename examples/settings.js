@@ -9,7 +9,7 @@ module.exports = {
      * @type {boolean} true | false
      * @description Whether show the header
      */
-    showSidebarToggle: false,
+    showSidebarToggle: true,
     /**
      * @type {boolean} true | false
      * @description Whether show the header
