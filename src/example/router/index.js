@@ -2,7 +2,7 @@ import Vue from 'vue';
 import store from '../store';
 import Router from 'vue-router';
 import constantRouter from './constant-router';
-import asyncRouter from './permission';
+import asyncRouter from './permission-router';
 import {
     getToken
 } from '../utils/auth';

@@ -14,9 +14,9 @@ module.exports = {
     lintOnSave: false,
     pages: {
         index: {
-            entry: './examples/main.js',
+            entry: './src/example/main.js',
             title: '后台管理系统',
-            template: './examples/index.html'
+            template: './src/example/index.html'
         }
     },
     configureWebpack: (config) => {

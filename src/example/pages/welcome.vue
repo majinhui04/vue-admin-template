@@ -3,10 +3,10 @@
         <div class="wrapper">
             <div class="content">
                 <h1>这里是个测试页面</h1>
-                <mr-flexbox>
+                <!--<mr-flexbox>
                     <mr-flexbox-item>阿斯达；</mr-flexbox-item>
                     <mr-flexbox-item>按时来达到了；案例；的</mr-flexbox-item>
-                </mr-flexbox>
+                </mr-flexbox>-->
             </div>
         </div>
     </div>

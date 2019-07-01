@@ -10,6 +10,7 @@ import './plugins/polyfill.js';
 // 主题
 import './portal/styles/index.scss';
 import './app.scss';
+import './route.config';
 
 Vue.config.productionTip = false;
 
