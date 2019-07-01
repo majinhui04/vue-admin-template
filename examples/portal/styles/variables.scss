@@ -1,18 +1,54 @@
+/*-------*/
+// 渐变色 -135deg
+$color-from: #FF9F49;
+$color-to: #FF771E;
+// 主色
+$color-primary: #F86200;
+// 不同条件
+$color-red: #F57B74;
+$color-danger: #F57B74;
+$color-orange: #FF8530;
+$color-warning: #FF8530;
+$color-blue: #6299DB;
+$color-info: #6299DB;
+$color-green: #2ED0C2;
+$color-success: #2ED0C2;
+
+// 用于一级信息：标题、正文
+$color-black: #333333;
+// 用于二级信息：导航栏、未点击状态
+$color-darkgray: #8B8582;
+// 用于三级信息：说明及提示文字
+$color-gray: #999999;
+// 描边颜色 0.5px
+$color-light: #E5E5E5;
+// 大面积背景色
+$color-lightest: #F6F6F6;
+// 输入框内颜色
+$color-hairline: #F8F8F8;
+
 //sidebar
 $menuBg: #304156;
 //$subMenuBg: #1f2d3d;
 $subMenuBg: #2E3743;
 $menuHover: #001528;
 
-$color-primary: #FF0050;
-$color-secondary: #e7a481;
-$color-red: #f56c6c;
-$color-blue: #108ee9;
-$color-yellow: #e6a23c;
-$color-green: #67c23a;
-$color-black: #333333;
-$color-gray: #888888;
-$color-darkgray: #666666;
-$color-light: #999999;
-$color-lightest: #d1d1d1;
-$color-hairline: #d9d9d9;
+/*-------*/
+// 次级辅助
+$font-mini: 10px;
+// 辅助信息
+$font-small: 12px;
+// 正常大小
+$font-medium: 14px;
+// 小标题
+$font-large: 16px;
+// 重要文字
+$font-xl: 18px;
+// 特殊标志
+$font-xxl: 20px;
+$font-xxxl: 24px;
+
+/*-------*/
+$whitespace: 20px;
+$wingblank: 20px;
+

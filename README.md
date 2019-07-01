@@ -44,8 +44,6 @@ npm install
 # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
-# 启动mock服务器 localhost:9800
-npm run dev:mock
 
 # Serve with hot reload at localhost:9528
 npm run dev
