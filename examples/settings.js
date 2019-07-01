@@ -1,5 +1,5 @@
 module.exports = {
-    title: '后台管理系统',
+    title: '',
     /**
      * @type {boolean} true | false
      * @description Whether show the top route

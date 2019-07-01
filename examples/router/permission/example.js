@@ -29,10 +29,10 @@ export default [
         children: [
             {
                 name: 'welcome',
-                path: 'welcome',
+                path: '',
                 component: resolve => require(['../../pages/welcome.vue'], resolve),
                 meta: {
-                    title: 'welcome'
+                    title: 'welcome11'
                 }
             }
         ]
