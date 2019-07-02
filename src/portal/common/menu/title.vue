@@ -21,7 +21,7 @@
             const cls = icon + ' svg-icon';
             const vnodes = [];
 
-            if(iconType && icon) {
+            if (iconType && icon) {
                 vnodes.push(<svg-icon icon-class={icon}/>)
             }
             if (!iconType && icon) {
