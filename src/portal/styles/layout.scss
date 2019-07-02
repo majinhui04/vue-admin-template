@@ -1,0 +1,143 @@
+@import "./variables";
+
+.sg-flexbox {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+}
+
+.sg-flexbox .sg-flexbox-item {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    margin-left: 8px;
+    min-width: 20px;
+}
+
+.sg-flexbox .sg-flexbox-item:first-child, .sg-flexbox-v .sg-flexbox-item:first-child {
+    margin-left: 0;
+}
+
+.sg-flexbox.sg-flexbox-end {
+    justify-content: flex-end;
+}
+
+.sg-flexbox.sg-flexbox-avg {
+    justify-content: space-between;
+}
+
+.sg-flexbox.sg-flexbox-center {
+    justify-content: center;
+}
+
+.sg-flexbox.sg-flexbox-vt-start {
+    align-items: flex-start;
+}
+
+.sg-flexbox.sg-flexbox-vt-end {
+    align-items: flex-end;
+}
+
+.sg-flexbox.sg-flexbox-vt-stretch {
+    align-items: stretch;
+}
+
+.sg-flexbox.sg-flexbox-vt-baseline {
+    align-items: baseline;
+}
+
+.sg-flexbox-v {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+}
+
+.sg-flexbox-v .sg-flexbox-item {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    min-width: 20px;
+}
+
+.sg-ft-center {
+    text-align: center;
+}
+
+.sg-ft-right {
+    text-align: right;
+}
+
+.sg-ft-xxxl {
+    font-size: $font-xxxl;
+}
+
+.sg-ft-xxl {
+    font-size: $font-xxl;
+}
+
+.sg-ft-xl {
+    font-size: $font-xl;
+}
+
+.sg-ft-lg {
+    font-size: $font-large;
+}
+
+.sg-ft-md {
+    font-size: $font-medium;
+}
+
+.sg-ft-sm {
+    font-size: $font-small;
+}
+
+.sg-ft-mn {
+    font-size: $font-mini;
+}
+
+.sg-ft-primary {
+    color: $color-primary;
+}
+
+.sg-ft-danger {
+    color: $color-danger;
+}
+
+.sg-ft-warning {
+    color: $color-warning;
+}
+
+.sg-ft-info {
+    color: $color-info;
+}
+
+.sg-ft-success {
+    color: $color-success;
+}
+
+.sg-ft-black {
+    color: $color-black;
+}
+
+.sg-ft-darkgray {
+    color: $color-darkgray;
+}
+
+.sg-ft-gray {
+    color: $color-gray;
+}
+
+.sg-ft-light {
+    color: $color-light;
+}
+
+.sg-ft-lightest {
+    color: $color-lightest;
+}
+
+.sg-ft-hairline {
+    color: $color-hairline;
+}
