@@ -14,9 +14,9 @@ module.exports = {
     lintOnSave: false,
     pages: {
         index: {
-            entry: './examples/main.js',
+            entry: './src/main.js',
             title: '后台管理系统',
-            template: './examples/index.html'
+            template: './src/index.html'
         }
     },
     configureWebpack: (config) => {
@@ -34,6 +34,22 @@ module.exports = {
         // 打包文件带hash
         config.output.filename('[name].[hash].js').end();
 
+        // set svg-sprite-loader
+        config.module
+            .rule('svg')
+            .exclude.add(resolve('src/icons'))
+            .end();
+        config.module
+            .rule('icons')
+            .test(/\.svg$/)
+            .include.add(resolve('src/icons'))
+            .end()
+            .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({
+                symbolId: 'icon-[name]'
+            })
+            .end();
         // 为了补删除换行而加的配置
         config.module
             .rule('vue')

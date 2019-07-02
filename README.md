@@ -1,29 +1,14 @@
-# vue-admin-template
+# web-admin-template
 
 ![](https://www.sharegoodsmall.com/images/sglogo.png)
 
-Latest stable version: [v0.0.1](http://git.mr.com/frontend/web-admin-template.git)
-
----
-
-vue2 + vuex + vue-router + webpack + ES6 + axios + sass + Element UI + iconfont + ESlint
-
-## Features
-
-- 权限
-- mock
-- 支持多页
-
+> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
 
 
 ## Requirement
 
 nodeJS >= v10.8.0
 npm =>6.2.0
-
-- IE6~10 ×
-- IE11 √
-- chrome √
 
 
 ## Installation
@@ -44,18 +29,10 @@ npm install
 # 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
-# 启动mock服务器 localhost:9800
-npm run dev:mock
-
-# Serve with hot reload at localhost:9528
+# Serve with hot reload 
 npm run dev
-
-# Build for production with minification
-npm run build
-
-# Build for production and view the bundle analyzer report
-npm run build --report
 ```
+
 
 最终你可以使用 `npm run build --report` 查看效果
 如图：
@@ -71,13 +48,14 @@ npm run build --report
 # 接口前缀
 VUE_APP_BASE_API='/api'
 # 联调环境
-VUE_APP_BASE_TARGET='http://192.168.32.138:8080/bi'
+VUE_APP_BASE_TARGET='http://192.168.32.138:8080/api'
 ```
 
 > VUE_APP_BASE_TARGET 注释后默认为本地mock
 
-## Release
-打包后的文件在`dist`文件夹
+## Build
+
+> 打包后的文件在`dist`文件夹
 
 ```bash
 # Install dependencies
@@ -88,7 +66,18 @@ npm run build
 
 ```
 
-### nginx相关改动
+### Nginx
+> 测试环境请支持https
+
+注意：
+请根据情况修改
+listen       80;
+请根据不同环境修改
+server_name cloudshare.sharegoodsmall.com;
+请根据后台服务修改IP、端口、接口前缀
+proxy_pass   http://127.0.0.1:8888/api;
+请根据实际地址修改
+root  /webapp/project/dist;
 
 ```
 http {
@@ -102,8 +91,7 @@ http {
 
     server {
         listen       80;
-        # 访问域名
-        server_name static.mr.com;
+        server_name cloudshare.sharegoodsmall.com;
         location /api {
             proxy_redirect     off;
             proxy_set_header   Host    $host;
@@ -112,11 +100,10 @@ http {
             proxy_pass_header Set-Cookie;
             proxy_set_header Cookie $http_cookie;
             # 反向代理接口
-    		proxy_pass   http://127.0.0.1:8888/api;
+            proxy_pass   http://127.0.0.1:8888/api;
         }
         # vue history 模式需要配置 否则404错误
         location / {
-            # 请替换此路径
             root  /Users/damon/Documents/webapp/crm/web-admin-template/dist;
             index  index.html index.htm;
             try_files $uri $uri/ /index.html;
@@ -135,38 +122,17 @@ http {
 }
 ```
 
-## Route
-分为固定路由以及权限路由
-固定路由包括`/login`、`/404`(src/layout/router/constant-router.js)
-
-
-```javascript
-
-```
-
-## Pages
-页面统一放在`src/views`
-
 ## API Reference
 e.g
 ```javascript
-import Vue from 'vue';
-import Urls from './api.js';
-import store from '../store';
-import { getToken, setToken } from '@/sharegoods-ui/lib/utils/auth';
-import { Message } from 'element-ui';
-import $console from '@/sharegoods-ui/lib/utils/logger';
-import HttpClient from '@/sharegoods-ui/lib/utils/http/http-client';
+import HttpClient from 'sharegoods-ui/lib/utils/http/http-client';
 
 Vue.use(HttpClient, {
     Message,
     Urls,
-    transformRequest({ path, data }) {
-        $console.log(`[HTTP请求:${path} start]`, data);
-    },
     // 全局接口请求数据成功条件
     getResponseSuccess(response) {
-        if ([0, 20000, 10000].includes(response.code)) {
+        if ([10000].includes(response.code)) {
             return true;
         }
         return false;
@@ -174,18 +140,12 @@ Vue.use(HttpClient, {
     transformResponse({ response, path }) {
         const body = response.data || {};
         const data = body.data || {};
-        const token = body.token || data.token;
-        response.message = response.message || response.msg;
-        if (token) {
-            setToken(token);
-        }
         // todo 用户登录失效
         if ([10010, 10011].includes(response.code)) {
             store.dispatch('LogOut').then(() => {
                 location.reload(true);
             });
         }
-        $console.log(`[HTTP请求:${path} end]`, response);
         return response;
     },
     getAccessToken() {
@@ -193,14 +153,6 @@ Vue.use(HttpClient, {
         return { 'token': token };
     }
 });
-const http = Vue.http;
-const API = http.httpFactory(Urls);
-export {
-    API
-};
-export default http;
-
-
 ```
 
 
@@ -214,8 +166,14 @@ sharegoods@163.com
 Hzmrnet20180808!@#
 
 
-## Components
-todo
+## Browsers support
+
+Modern browsers and Internet Explorer 10+.
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- | --------- |
+| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
+
 
 ## Licence
 

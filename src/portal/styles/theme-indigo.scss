@@ -1,0 +1,25 @@
+.theme-indigo {
+    .portal-wrapper {
+        .portal-header {
+            background-color: #292961;
+
+            .nav-wrapper {
+                .nav-item-title {
+                    color: rgb(209, 209, 240);
+                    display: block;
+                    width: 80px;
+                    text-align: center;
+                    position: relative;
+
+                    &.router-link-active {
+                        color:rgb(209, 209, 240);
+                        &::after {
+                            content: '  ';
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
