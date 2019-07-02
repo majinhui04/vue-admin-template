@@ -11,7 +11,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {});
 
 const api = [];
-for (let key in modules) {
+for (const key in modules) {
     api.push(...modules[key]);
 }
 export default api;
