@@ -1,19 +1,23 @@
 {
-    "name": "vue-admin-template",
+    "name": "web-admin-template",
     "version": "1.0.0",
     "license": "MIT",
-    "description": "A template for Admin Platform",
-    "author": "majinhui",
+    "description": "An out-of-box UI solution for enterprise applications",
+    "author": "damon <majinjhui@meeruu.com>",
     "scripts": {
         "precommit": "lint-staged",
+        "preview": "node build/index.js --preview",
         "dev": "npm run serve",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "lint": "vue-cli-service lint"
+        "lint": "vue-cli-service lint",
+        "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+        "new": "plop"
     },
     "lint-staged": {
         "src/**/*.{js,vue}": [
-            "eslint"
+            "eslint",
+            "git add"
         ]
     },
     "dependencies": {
@@ -36,14 +40,27 @@
         "babel-eslint": "10.0.1",
         "chalk": "2.4.1",
         "chokidar": "2.1.5",
+        "connect": "^3.7.0",
         "eslint": "5.16.0",
         "eslint-plugin-vue": "5.0.0",
         "husky": "1.2.1",
         "lint-staged": "8.1.0",
         "mockjs": "1.0.1-beta3",
         "node-sass": "^4.9.0",
+        "plop": "^2.4.0",
+        "runjs": "^4.4.2",
         "sass-loader": "^7.1.0",
+        "serve-static": "^1.14.1",
         "svg-sprite-loader": "^4.1.6",
+        "svgo": "^1.2.2",
         "vue-template-compiler": "2.5.17"
-    }
+    },
+    "engines": {
+        "node": ">=8.9",
+        "npm": ">= 3.0.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }
