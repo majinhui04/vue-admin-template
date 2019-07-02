@@ -221,6 +221,11 @@ body, html {
             .el-menu {
                 width: 100%;
             }
+            .placehoder {
+                //width: 20px;
+                //display: inline-block;
+                //margin-right: 16px;
+            }
             .svg-icon {
                 width: 1em;
                 height: 1em;
@@ -272,10 +277,6 @@ body, html {
         background-repeat: no-repeat;
         background-size: cover;
         vertical-align: middle;
-
-        &.icon-sidebar-toggle {
-            background-image: url("../assets/img/icon_zhankai@2x.png");
-        }
     }
     .router-link-active {
         color: $activeColor;

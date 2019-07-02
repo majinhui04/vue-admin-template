@@ -9,6 +9,8 @@ export default [
             {
                 path: 'index',
                 meta: {
+                    iconType: 'svg',
+                    icon: 'nested',
                     title: '总览数据'
                 }
             }
@@ -24,7 +26,8 @@ export default [
             {
                 path: 'icon',
                 meta: {
-                    icon: 'font_family icon-shangpin-xuanzhong',
+                    iconType: 'svg',
+                    icon: 'nested',
                     title: '图标'
                 }
             },
@@ -32,6 +35,8 @@ export default [
                 alwaysShow: true,
                 path: 'table',
                 meta: {
+                    iconType: 'svg',
+                    icon: 'nested',
                     title: '表格'
                 },
                 children: [
@@ -44,8 +49,25 @@ export default [
                     {
                         path: 'index',
                         meta: {
-                            title: 'simple1'
+                            title: 'index'
                         }
+                    },
+                    {
+                        alwaysShow: true,
+                        path: 'tree',
+                        meta: {
+                            iconType: 'svg',
+                            icon: 'nested',
+                            title: 'tree'
+                        },
+                        children: [
+                            {
+                                path: 'demo',
+                                meta: {
+                                    title: 'demo'
+                                }
+                            }
+                        ]
                     }
                 ]
             }

@@ -93,14 +93,16 @@
 
 <style scoped lang="scss">
     .head {
-        padding: 10px 0;
+        padding: 16px 12px;
         color: #707070;
         text-align: center;
-        border-bottom: 1px solid #ddd;
         position: relative;
         .head-text {
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
         }
     }
     .toggle-sidebar-button {

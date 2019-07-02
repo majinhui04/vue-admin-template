@@ -4,14 +4,14 @@
             v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
             <app-link v-if="onlyOneChild.meta" :to="onlyOneChild.name">
                 <el-menu-item :index="onlyOneChild.name" :class="{'submenu-title-noDropdown':!isNest}">
-                    <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title"/>
+                    <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title" :icon-type="onlyOneChild.meta && onlyOneChild.meta.iconType"/>
                 </el-menu-item>
             </app-link>
         </template>
 
         <el-submenu v-else ref="subMenu" :index="item.name" popper-append-to-body>
             <template slot="title">
-                <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title"/>
+                <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" :icon-type="item.meta && item.meta.iconType"/>
             </template>
             <sidebar-item
                 v-for="child in item.children"

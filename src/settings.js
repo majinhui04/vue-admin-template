@@ -1,5 +1,5 @@
 module.exports = {
-    title: '',
+    title: '项目名称',
     /**
      * @type {boolean} true | false
      * @description Whether show the top route
