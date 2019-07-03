@@ -55,11 +55,24 @@ const permission = {
                 } else {
                     accessedRouters = filterAsyncRouter(asyncRouter, roles);
                 }
+                addRedirect(accessedRouters);
                 commit('SET_ROUTERS', accessedRouters.concat([{ path: '*', redirect: '/404', hidden: true }]));
                 resolve();
             });
         }
     }
 };
+
+function addRedirect(routes) {
+    const stack = [...routes];
+    while (stack.length) {
+        const curr = stack.pop();
+        if (curr.children && curr.children.length) {
+            curr.redirect = { name: curr.children[0].name };
+            stack.push(...curr.children);
+        }
+    }
+    return routes;
+}
 
 export default permission;

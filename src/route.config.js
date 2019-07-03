@@ -24,14 +24,6 @@ export default [
         },
         children: [
             {
-                path: 'icon',
-                meta: {
-                    iconType: 'svg',
-                    icon: 'nested',
-                    title: '图标'
-                }
-            },
-            {
                 alwaysShow: true,
                 path: 'table',
                 meta: {
@@ -70,6 +62,14 @@ export default [
                         ]
                     }
                 ]
+            },
+            {
+                path: 'icon',
+                meta: {
+                    iconType: 'svg',
+                    icon: 'nested',
+                    title: '图标'
+                }
             }
         ]
     }

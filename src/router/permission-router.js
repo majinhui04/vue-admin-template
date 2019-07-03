@@ -48,20 +48,12 @@ function _import(path) {
 }
 
 addRoute(routes);
-routes.forEach(curr => {
-    if (curr.children && curr.children.length) {
-        curr.redirect = {
-            name: curr.children[0].name
-        };
-    }
-});
 
 export default [
     {
         path: '/',
         name: 'root',
         component: portal,
-        redirect: { name: routes[0].name },
         children: [
             ...routes
         ]
