@@ -8,7 +8,6 @@ import HttpClient from 'sharegoods-ui/lib/utils/http/http-client';
 
 Vue.use(HttpClient, {
     Message,
-    Urls,
     transformRequest({ path, data }) {
         $console.log(`[HTTP请求:${path} start]`, data);
     },

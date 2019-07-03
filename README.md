@@ -15,29 +15,18 @@ npm =>6.2.0
 
 ```bash
 git clone  http://git.mr.com/frontend/web-admin-template.git
-
 ```
 
 
 ## Quick start
 
 ```bash
-
-# Install dependencies
-npm install
-
-# 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
+# Install dependencies 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
 # Serve with hot reload 
 npm run dev
 ```
-
-
-最终你可以使用 `npm run build --report` 查看效果
-如图：
-![demo](https://panjiachen.github.io/images/element-cdn.png)
-
 
 
 ## Cli options / Configs
@@ -67,17 +56,15 @@ npm run build
 ```
 
 ### Nginx
+
 > 测试环境请支持https
 
-注意：
-请根据情况修改
-listen       80;
-请根据不同环境修改
-server_name cloudshare.sharegoodsmall.com;
-请根据后台服务修改IP、端口、接口前缀
-proxy_pass   http://127.0.0.1:8888/api;
-请根据实际地址修改
-root  /webapp/project/dist;
+以下字段请实际据情况进行修改
+
+   - listen
+   - server_name
+   - proxy_pass
+   - root
 
 ```
 http {
@@ -91,7 +78,7 @@ http {
 
     server {
         listen       80;
-        server_name cloudshare.sharegoodsmall.com;
+        server_name webname.sharegoodsmall.com;
         location /api {
             proxy_redirect     off;
             proxy_set_header   Host    $host;
@@ -99,13 +86,14 @@ http {
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_pass_header Set-Cookie;
             proxy_set_header Cookie $http_cookie;
-            # 反向代理接口
+            # 服务端接口地址 + 接口前缀
             proxy_pass   http://127.0.0.1:8888/api;
         }
         # vue history 模式需要配置 否则404错误
         location / {
             root  /Users/damon/Documents/webapp/crm/web-admin-template/dist;
             index  index.html index.htm;
+            # 支持history模式
             try_files $uri $uri/ /index.html;
 
             # 首页禁止缓存
@@ -122,14 +110,81 @@ http {
 }
 ```
 
-## API Reference
+
+## 开发流程
+
+### API Reference
+
+接口定义
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| name | 接口调用函数，全局必须唯一 | - | - | - |
+| path | 实际接口调用地址，支持restful | - | - | - |
+| method | 接口方式 | String | `get`、`post`、`delete`、`patch`、`put` |  |
+| processData | 调用接口前处理数据 | - | - | - |
+| success | 调用成功后处理数据 | - | - | - |
+
+
+e.g
+```javascript
+export default [
+    {
+        name: 'articleList',
+        path: '/article/list',
+        method: 'post',
+        processData(data){
+            if(data.date) {
+                data.startTime = date[0];
+                data.endTime = date[1];
+                delete data.date;
+            }
+            return data;
+        },
+        success(response){
+            response.message = '获取文章成功';
+            return response;
+        }
+    },
+    {
+        name: 'articleDetail',
+        path: '/article/detail/{id}',
+        method: 'get'
+    },
+    {
+        name: 'articleUpdate',
+        path: '/article/update',
+        method: 'put'
+    },
+    {
+        name: 'articleCreate',
+        path: '/article/create',
+        method: 'post'
+    }
+];
+
+```
+
+HttpClient 参数说明
+
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| timeout | 超时时间 | - | - | 15000 |
+| Message | 消息提醒方法 | - | - | - |
+| getResponseSuccess | 接口成功判断 | - | - | - |
+| transformResponse | 所有接口的接口回调函数 | - | - | - |
+| getAccessToken | 设置headers参数 | - | - | - |
+| handleError | 所有接口的失败回调 | - | - | - |
+| handleSuccess | 所有接口的成功回调 | - | - | - |
+
 e.g
 ```javascript
 import HttpClient from 'sharegoods-ui/lib/utils/http/http-client';
+import { Message } from 'element-ui';
 
 Vue.use(HttpClient, {
+    timeout:10000,
     Message,
-    Urls,
     // 全局接口请求数据成功条件
     getResponseSuccess(response) {
         if ([10000].includes(response.code)) {
@@ -138,32 +193,55 @@ Vue.use(HttpClient, {
         return false;
     },
     transformResponse({ response, path }) {
-        const body = response.data || {};
-        const data = body.data || {};
-        // todo 用户登录失效
-        if ([10010, 10011].includes(response.code)) {
+        // 用户登录失效
+        if ([10010].includes(response.code)) {
             store.dispatch('LogOut').then(() => {
                 location.reload(true);
             });
         }
-        return response;
     },
     getAccessToken() {
         const token = getToken() || '';
         return { 'token': token };
+    },
+    // 全局接口请求错误的钩子
+    handleError({ response, meta }) {
+        if (meta && meta.isShowError) {
+            Message({
+                message: response.message,
+                type: 'error',
+                duration: 5 * 1000
+            });
+        }
+    },
+    // 全局接口请求成功的钩子
+    handleSuccess({ response, meta }) {
+        if (meta && meta.isShowSuccess) {
+            Message({
+                type: 'success',
+                message: meta.message || '操作成功!'
+            });
+        }
     }
 });
+
+const http = Vue.http;
+const API = http.httpFactory(Urls);
+
+API.articleList({startTime:'2019-07-01',$timeout:5000},{isShowError:true}).then(res=>{
+    console.log('response',res)
+})
+
 ```
 
+> 如果参数中包含`$timeout`则表明这个接口使用自定义的超时时间
 
-## Mock
+
+### Route
+路由文件配置在项目下的`route.config.js`进行配置
+
+### Mock
 在`mock`下建立数据和路径的关联,路径既是API中配置的`path`，文件名既API中配置的`name`(放在`mock`文件夹下)
-
-## Account Reference
-
-#### github账号
-sharegoods@163.com
-Hzmrnet20180808!@#
 
 
 ## Browsers support
@@ -178,8 +256,5 @@ Modern browsers and Internet Explorer 10+.
 ## Licence
 
 [MIT](http://opensource.org/licenses/MIT)
-
-## 踩坑记
-vue-router@3.0.3的顶级路由不被选中问题（没有出现router-link-active）
 
 
