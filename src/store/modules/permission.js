@@ -56,7 +56,7 @@ const permission = {
                     accessedRouters = filterAsyncRouter(asyncRouter, roles);
                 }
                 addRedirect(accessedRouters);
-                commit('SET_ROUTERS', accessedRouters.concat([{ path: '*', redirect: '/404', hidden: true }]));
+                commit('SET_ROUTERS', accessedRouters.concat([{ path: '*', redirect: { name: 'notfund' }, hidden: true }]));
                 resolve();
             });
         }

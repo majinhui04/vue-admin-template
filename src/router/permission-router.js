@@ -22,17 +22,20 @@ function addRoute(list) {
     const stack = [...list];
     while (stack.length) {
         const curr = stack.pop();
-        curr.name = curr.parentName ? curr.parentName + '-' + curr.path : curr.path;
+        curr.alias = curr.parentName ? curr.parentName + '@' + curr.path : curr.path;
+        if(!curr.name) {
+            curr.name = curr.alias;
+        }
         if (!curr.parentName) {
             curr.component = portalMain;
         } else if (curr.children && curr.children.length) {
             curr.component = portalView;
         } else {
-            curr.component = _import(curr.name);
+            curr.component = _import(curr.alias);
         }
         if (curr.children && curr.children.length) {
             curr.children.forEach(item => {
-                item.parentName = curr.name;
+                item.parentName = curr.alias;
             });
             stack.push(...curr.children);
         }
@@ -41,8 +44,8 @@ function addRoute(list) {
 }
 
 function _import(path) {
-    const result = path.split('-');
-    const name = result.pop();
+    const result = path.split('@');
+    const name = result.pop() || 'index';
     const dir = result.join('/') + '/';
     return resolve => require.ensure([], () => resolve(require(`../pages/${dir}${name}.vue`)));
 }

@@ -2,7 +2,6 @@ export default [
     {
         path: 'dashboard',
         meta: {
-            top: true,
             title: '总览'
         },
         children: [
@@ -19,7 +18,6 @@ export default [
     {
         path: 'demo',
         meta: {
-            top: true,
             title: '组件'
         },
         children: [
@@ -69,6 +67,22 @@ export default [
                     iconType: 'svg',
                     icon: 'nested',
                     title: '图标'
+                }
+            }
+        ]
+    },
+    {
+        hidden: true,
+        path: 'exception',
+        meta: {
+            title: '异常'
+        },
+        children: [
+            {
+                path: '404',
+                name: 'notfund',
+                meta: {
+                    title: '404'
                 }
             }
         ]
