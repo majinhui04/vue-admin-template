@@ -12,7 +12,7 @@ then
   echo "Releasing $VERSION ..."
 
   # build
-  VERSION=$VERSION
+  VERSION=$VERSION npm run build
 
   # commit
   git add -A
@@ -25,5 +25,6 @@ then
   git checkout develop
   git rebase master
   git push github develop
+  git push origin develop
 
 fi
