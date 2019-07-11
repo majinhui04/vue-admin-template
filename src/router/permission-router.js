@@ -17,13 +17,13 @@ import routerConfig from '../route.config';
  */
 
 const routes = [...routerConfig];
-
+console.log(111)
 function addRoute(list) {
     const stack = [...list];
     while (stack.length) {
         const curr = stack.pop();
         curr.alias = curr.parentName ? curr.parentName + '@' + curr.path : curr.path;
-        if(!curr.name) {
+        if (!curr.name) {
             curr.name = curr.alias;
         }
         if (!curr.parentName) {
