@@ -71,6 +71,9 @@ body, html {
 }
 
 .portal-wrapper {
+    .app-breadcrumb {
+        overflow: hidden;
+    }
     &.noHeader {
         .portal-main {
             top: 0;

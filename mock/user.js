@@ -11,14 +11,18 @@ const users = {
     'admin-token': {
         roles: ['admin'],
         introduction: 'I am a super administrator',
-        avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-        name: 'Super Admin'
+        avatar: 'https://www.gravatar.com/avatar/9e534860526289cf56ece3461ab3578c?s=46&d=identicon',
+        name: 'Super Admin',
+        nickName: 'Super Admin',
+        permission: ['/dashboard/index', '/directive/table/index']
     },
     'editor-token': {
         roles: ['editor'],
         introduction: 'I am an editor',
-        avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-        name: 'Normal Editor'
+        avatar: 'https://www.gravatar.com/avatar/9e534860526289cf56ece3461ab3578c?s=46&d=identicon',
+        name: 'Normal Editor',
+        nickName: 'Normal Editor',
+        permission: ['/dashboard/index', '/color/index']
     }
 };
 
@@ -43,9 +47,8 @@ export default [
             return {
                 code: 0,
                 data: {
-                    token: 'uuid',
-                    account,
-                    userName: account
+                    token: +new Date(),
+                    ...users[token.token]
                 }
             };
         }
@@ -84,6 +87,21 @@ export default [
             return {
                 code: 0,
                 data: 'success'
+            };
+        }
+    },
+
+    // user logout
+    {
+        url: '/user/ownDetails',
+        type: 'post',
+        response: _ => {
+            return {
+                code: 0,
+                data: {
+                    nickName: 'damon',
+                    avatar: 'https://www.gravatar.com/avatar/9e534860526289cf56ece3461ab3578c?s=46&d=identicon'
+                }
             };
         }
     }

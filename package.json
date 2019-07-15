@@ -12,7 +12,8 @@
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
-        "new": "plop"
+        "new": "plop",
+        "release": "sh bulid/release.sh"
     },
     "lint-staged": {
         "src/**/*.{js,vue}": [

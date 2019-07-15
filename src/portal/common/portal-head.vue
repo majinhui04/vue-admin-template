@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="avatar-wrapper">
-            <img src="../assets/img/avatar.png" alt="" class="avatar">
+            <img :src="userInfo.avatar" alt="" class="avatar">
         </div>
         <div class="user-wrapper">
             <el-dropdown @command="handleCommand">

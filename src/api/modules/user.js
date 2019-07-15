@@ -17,7 +17,7 @@ export default [
         }
     },
     {
-        name: 'userOwnDetail1',
+        name: 'userOwnDetail',
         label: '查询当前用户的详情接口',
         path: '/user/ownDetails',
         method: 'post'

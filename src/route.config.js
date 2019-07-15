@@ -1,16 +1,61 @@
 export default [
     {
+        alwaysShow: true,
         path: 'dashboard',
         meta: {
+            iconType: 'svg',
+            icon: 'nested',
             title: '总览'
         },
         children: [
             {
                 path: 'index',
                 meta: {
-                    iconType: 'svg',
-                    icon: 'nested',
                     title: '总览数据'
+                },
+                // 可以选填 默认会去加载 path目录
+                component: () => import('@/pages/dashboard/index.vue')
+            }
+        ]
+    },
+    {
+        alwaysShow: true,
+        path: 'directive',
+        meta: {
+            iconType: 'svg',
+            icon: 'nested',
+            title: '指令'
+        },
+        children: [
+            {
+                path: 'table',
+                meta: {
+                    title: 'table'
+                },
+                children: [
+                    {
+                        path: 'index',
+                        meta: {
+                            title: '表格固定'
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        alwaysShow: true,
+        path: 'color',
+        meta: {
+            iconType: 'svg',
+            icon: 'nested',
+            title: '颜色'
+        },
+        children: [
+            {
+                path: 'index',
+                meta: {
+                    title: '颜色'
                 }
             }
         ]
@@ -67,22 +112,6 @@ export default [
                     iconType: 'svg',
                     icon: 'nested',
                     title: '图标'
-                }
-            }
-        ]
-    },
-    {
-        hidden: true,
-        path: 'exception',
-        meta: {
-            title: '异常'
-        },
-        children: [
-            {
-                path: '404',
-                name: 'notfund',
-                meta: {
-                    title: '404'
                 }
             }
         ]

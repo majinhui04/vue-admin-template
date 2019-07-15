@@ -6,7 +6,8 @@ import asyncRouter from './permission-router';
 import {
     getToken
 } from '../utils/auth';
-import $console from 'sharegoods-ui/lib/utils/logger';
+
+const settings = store.state.settings;
 
 Vue.use(Router);
 export {
@@ -14,7 +15,7 @@ export {
     asyncRouter
 };
 const router = new Router({
-    mode: 'hash', // history 后端支持可开
+    mode: settings.router.mode, // history 后端支持可开
     scrollBehavior: () => ({
         y: 0
     }),
@@ -23,11 +24,10 @@ const router = new Router({
     ]
 });
 
-const whiteList = ['/login', '/404'];
+const whiteList = settings.router.whiteList;
 // 权限控制
 router.beforeEach((to, from, next) => {
     const token = getToken();
-    $console.log('token', token);
     // 根据地址判断组件是否需要变更
     // if (to.meta.keepAlive) {
     //     if ((to.meta.lastHistoryFullPath && to.meta.lastHistoryFullPath === to.fullPath) || !to.meta.lastHistoryFullPath) {
@@ -37,7 +37,7 @@ router.beforeEach((to, from, next) => {
     //     }
     // }
     // to.meta.lastHistoryFullPath = to.fullPath;
-    // 如果已经登录过
+    // 如果已经登录过则尝试进入首页
     if (token) {
         if (to.path === '/login') {
             next('/');
@@ -45,13 +45,13 @@ router.beforeEach((to, from, next) => {
             // 假如没有权限信息需要先拉取
             if (store.getters.roles.length === 0) {
                 // 获取用户信息
-                store.dispatch('GetInfo').then(roles => {
+                store.dispatch('GetInfo').then(({ roles, permission }) => {
                     // 根据roles权限生成可访问的路由表
                     store.dispatch('GenerateRoutes', {
-                        roles
+                        roles,
+                        permission
                     }).then(() => {
                         const addRouters = store.getters.addRouters;
-                        // todo 没有权限的跳转
                         // 动态添加可访问路由表
                         router.addRoutes(addRouters);
                         // 确保addRoutes已完成,set the replace: true so the navigation will not leave a history record
@@ -61,8 +61,12 @@ router.beforeEach((to, from, next) => {
                         });
                     });
                 }).catch((err) => {
+                    console.error(err);
                     store.dispatch('LogOut').then(() => {
-                        location.reload(true);
+                        next('/login');
+                        setTimeout(() => {
+                            // location.reload(true);
+                        }, 500);
                     });
                 });
             } else {
@@ -70,7 +74,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
-        /* has no token*/
+        /* has no token */
         if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
             next();
         } else {
@@ -86,6 +90,8 @@ router.afterEach((to, from) => {
     const body = document.getElementsByTagName('body')[0];
     try {
         body.className = bodyClass;
-    } catch (e) {}
+    } catch (e) {
+    }
+    settings.router.afterEach && settings.router.afterEach(to, from);
 });
 export default router;

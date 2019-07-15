@@ -5,12 +5,22 @@ import { asyncRouter, constantRouter } from '../../router';
  * @param roles
  * @param route
  */
-function hasPermission(roles, route) {
+function hasPermission(data, route) {
+    const roles = data.roles;
+    const permission = data.permission;
+    const meta = route.meta || {};
+    const name = route.name;
+    let result = false;
+    // 两种权限校验模式
     if (route.meta && route.meta.roles) {
-        return roles.some(role => route.meta.roles.includes(role));
+        result = roles.some(role => route.meta.roles.includes(role));
     } else {
-        return true;
+        result = permission.some(item => item.indexOf(name) === 0);
     }
+    if (meta.isAuth === false) {
+        result = true;
+    }
+    return result;
 }
 
 /**
@@ -18,14 +28,14 @@ function hasPermission(roles, route) {
  * @param routes asyncRouterMap
  * @param roles
  */
-function filterAsyncRouter(routes, roles) {
+function filterAsyncRouter(routes, data) {
     const res = [];
 
     routes.forEach(route => {
         const tmp = { ...route };
-        if (hasPermission(roles, tmp)) {
+        if (hasPermission(data, tmp)) {
             if (tmp.children) {
-                tmp.children = filterAsyncRouter(tmp.children, roles);
+                tmp.children = filterAsyncRouter(tmp.children, data);
             }
             res.push(tmp);
         }
@@ -48,15 +58,20 @@ const permission = {
     actions: {
         GenerateRoutes({ commit }, data) {
             return new Promise(resolve => {
-                const { roles } = data;
+                const { roles, permission } = data;
+                console.log(123, roles, permission);
                 let accessedRouters;
                 if (roles.includes('admin')) {
                     accessedRouters = asyncRouter;
                 } else {
-                    accessedRouters = filterAsyncRouter(asyncRouter, roles);
+                    accessedRouters = filterAsyncRouter(asyncRouter, data);
                 }
                 addRedirect(accessedRouters);
-                commit('SET_ROUTERS', accessedRouters.concat([{ path: '*', redirect: { name: 'notfund' }, hidden: true }]));
+                commit('SET_ROUTERS', accessedRouters.concat([{
+                    path: '*',
+                    redirect: { path: '/404' },
+                    hidden: true
+                }]));
                 resolve();
             });
         }
@@ -66,10 +81,10 @@ const permission = {
 function addRedirect(routes) {
     const stack = [...routes];
     while (stack.length) {
-        const curr = stack.pop();
+        const curr = stack.shift();
         if (curr.children && curr.children.length) {
             curr.redirect = { name: curr.children[0].name };
-            stack.push(...curr.children);
+            stack.unshift(...curr.children);
         }
     }
     return routes;

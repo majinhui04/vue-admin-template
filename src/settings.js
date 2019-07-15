@@ -1,5 +1,15 @@
 module.exports = {
     title: '项目名称',
+    isAuth: true,
+    router: {
+        whiteList: ['/login', '/404', '/403'],
+        mode: 'hash',
+        afterEach(from, to) {
+        }
+    },
+    user: {
+        IsGetInfo: false
+    },
     /**
      * @type {boolean} true | false
      * @description Whether show the top route
@@ -25,7 +35,7 @@ module.exports = {
      * @type {boolean} true | false
      * @description Whether need tagsView
      */
-    tagsView: false,
+    tagsView: true,
     /**
      * todo
      * @type {string | array} 'production' | ['production', 'development']

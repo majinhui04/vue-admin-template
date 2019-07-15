@@ -25,27 +25,40 @@ const user = {
     },
 
     actions: {
-        // 获取用户信息
+        // 获取权限以及用户信息
         GetInfo({ commit, state }) {
+            const userInfo = state.userInfo;
+            const IsGetInfo = this.state.settings.user.IsGetInfo;
+            const isAuth = this.state.settings.isAuth;
+            const _roles = !isAuth ? ['admin'] : userInfo.roles || ['user'];
             return new Promise((resolve, reject) => {
-                const role = 'user';
                 // 如果不需要重新获取用户信息
-                if (API.userOwnDetail) {
+                if (IsGetInfo) {
                     // 获取用户个人信息与权限
                     API.userOwnDetail().then(res => {
                         const data = res.data || {};
-                        data.role = data.role || role;
-                        const roles = data.role.split(',');
+                        const roles = data.roles || _roles;
+                        const permission = data.permission || userInfo.permission || [];
                         commit('SET_ROLES', roles);
-                        commit('SET_USER', data);
-                        resolve(roles);
+                        commit('SET_USER', {
+                            avatar: '/static/img/avatar.png',
+                            nickName: 'unkown',
+                            ...data
+                        });
+                        resolve({
+                            roles,
+                            permission
+                        });
                     }).catch(err => {
                         reject(err);
                     });
                 } else {
-                    const roles = ['admin'];
+                    const roles = _roles;
                     commit('SET_ROLES', roles);
-                    resolve(roles);
+                    resolve({
+                        roles,
+                        permission: userInfo.permission || []
+                    });
                 }
             });
         },
@@ -54,7 +67,13 @@ const user = {
             return new Promise((resolve, reject) => {
                 API.userLogin(data, { isShowError: true }).then(res => {
                     const data = res.data || {};
-                    commit('SET_USER', data);
+                    commit('SET_USER', {
+                        avatar: '/static/img/avatar.png',
+                        nickName: 'unkown',
+                        roles: [],
+                        permission: [],
+                        ...data
+                    });
                     resolve(res);
                 }).catch(err => {
                     reject(err);
