@@ -8,6 +8,7 @@ import { asyncRouter, constantRouter } from '../../router';
 function hasPermission(data, route) {
     const roles = data.roles;
     const permission = data.permission;
+    const meta = route.meta || {};
     const name = route.name;
     let result = false;
     // 两种权限校验模式 1. 静态校验：根据固定的角色 2: 动态校验：后台返回资源列表
@@ -17,6 +18,9 @@ function hasPermission(data, route) {
         result = permission.some(item => item.indexOf(name) === 0);
     }
     if (route.path === '/') {
+        result = true;
+    }
+    if (meta.isAuth === false) {
         result = true;
     }
     return result;

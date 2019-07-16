@@ -258,6 +258,3 @@ Modern browsers and Internet Explorer 10+.
 [MIT](http://opensource.org/licenses/MIT)
 
 ## changelog
-add content
-20190716
-20190716 Releasing 1.0.3 ...

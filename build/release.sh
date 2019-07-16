@@ -14,7 +14,7 @@ then
 
   # build
   VERSION=$VERSION
-  echo "$DATE Releasing $VERSION ...">>README.md
+  echo "$DATE Releasing $VERSION">>README.md
 
   # commit
   git add -A
