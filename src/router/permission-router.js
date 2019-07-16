@@ -70,9 +70,6 @@ export default [
         name: 'root',
         component: portal,
         redirect: '/403',
-        meta: {
-            isAuth: false
-        },
         children: [
             ...routes
         ]

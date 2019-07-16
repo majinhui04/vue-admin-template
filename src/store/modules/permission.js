@@ -1,23 +1,22 @@
 import { asyncRouter, constantRouter } from '../../router';
 
 /**
- * 通过meta.role判断是否与当前用户权限匹配
- * @param roles
+ * 判断是否与当前用户权限匹配
+ * @param {roles,permission}
  * @param route
  */
 function hasPermission(data, route) {
     const roles = data.roles;
     const permission = data.permission;
-    const meta = route.meta || {};
     const name = route.name;
     let result = false;
-    // 两种权限校验模式
+    // 两种权限校验模式 1. 静态校验：根据固定的角色 2: 动态校验：后台返回资源列表
     if (route.meta && route.meta.roles) {
         result = roles.some(role => route.meta.roles.includes(role));
     } else {
         result = permission.some(item => item.indexOf(name) === 0);
     }
-    if (meta.isAuth === false) {
+    if (route.path === '/') {
         result = true;
     }
     return result;
@@ -59,7 +58,6 @@ const permission = {
         GenerateRoutes({ commit }, data) {
             return new Promise(resolve => {
                 const { roles, permission } = data;
-                console.log(123, roles, permission);
                 let accessedRouters;
                 if (roles.includes('admin')) {
                     accessedRouters = asyncRouter;

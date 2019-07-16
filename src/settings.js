@@ -1,5 +1,9 @@
 module.exports = {
     title: '项目名称',
+    /**
+     * @type {boolean} true | false
+     * @description 是否需要权限控制
+     */
     isAuth: true,
     router: {
         whiteList: ['/login', '/404', '/403'],
