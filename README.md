@@ -257,4 +257,4 @@ Modern browsers and Internet Explorer 10+.
 
 [MIT](http://opensource.org/licenses/MIT)
 
-## changelog
+## changelog20190716 Releasing 1.0.4
