@@ -7,6 +7,8 @@ import store from './store';
 import './plugins/element.js';
 import './plugins/sharegoods.js';
 import './plugins/polyfill.js';
+import './plugins/directives.js';
+// 私有主题
 import './app.scss';
 
 Vue.config.productionTip = false;

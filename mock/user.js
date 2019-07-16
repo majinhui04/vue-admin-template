@@ -22,7 +22,7 @@ const users = {
         avatar: 'https://www.gravatar.com/avatar/9e534860526289cf56ece3461ab3578c?s=46&d=identicon',
         name: 'Normal Editor',
         nickName: 'Normal Editor',
-        permission: ['/dashboard/index', '/color/index']
+        permission: ['/dashboard/index', '/color/index','dashboard.button1']
     }
 };
 
