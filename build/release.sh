@@ -26,5 +26,8 @@ then
   git rebase master
   git push github develop
   git push origin develop
+  git push spider template
+  git push bi template
+  git push capital template
 
 fi
