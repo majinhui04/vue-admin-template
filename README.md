@@ -2,8 +2,79 @@
 
 ![](https://www.sharegoodsmall.com/images/sglogo.png)
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+这是一个后台前端解决方案，它基于 vue 和 element-ui实现。
+它使用了最新的前端技术栈，动态路由，权限验证，提炼了典型的业务模型
+提供了丰富的功能组件，它可以帮助你快速搭建中小型后台产品原型
 
+> 本项目的业务组件以及接口API依赖于 [sharegoods-ui](https://www.npmjs.com/package/sharegoods-ui)，不支持低版本浏览器(如 ie)，有需求请自行添加 polyfill
+
+## Feature
+
+- 登录 / 注销
+
+- 权限验证
+  - [x] 页面权限
+  - [x] 按钮权限
+  - [x] 指令权限
+
+- 多环境发布
+  - dev sit stage prod（开发，测试，预发布，生产）
+
+- 全局功能
+  - [ ] 多种动态换肤
+  - [x] 动态侧边栏（支持多级路由嵌套）
+  - [x] 动态面包屑
+  - [x] 快捷导航(标签页)
+  - [x] Svg Sprite 图标
+  - [x] 本地/后端 mock 数据
+  - [ ] Screenfull全屏
+  - [x] 自适应收缩侧边栏
+
+- 编辑器
+  - [ ] 富文本
+  - [ ] Markdown
+  - [ ] JSON 等多格式
+
+- Excel
+  - [ ] 导出excel
+  - [ ] 导入excel
+  - [ ] 前端可视化excel
+  - [ ] 导出zip
+
+- 表格
+  - [ ] 动态表格
+  - [ ] 拖拽表格
+  - [ ] 内联编辑
+
+- 错误页面
+  - [x] 403
+  - [x] 404
+
+
+- 业务組件
+  - [x] 查询页面组件
+  - [ ] 表格编辑组件
+  - [ ] 动态表单组件
+  
+- 基础組件
+  - [ ] 头像上传
+  - [ ] 返回顶部
+  - [ ] 拖拽Dialog
+  - [ ] 拖拽Select
+  - [ ] 拖拽看板
+  - [ ] 列表拖拽
+  - [ ] SplitPane
+  - [ ] Dropzone
+  - [ ] Sticky
+  - [ ] CountTo
+
+- [ ] 综合实例
+- [ ] 错误日志
+- [ ] Dashboard
+- [ ] 引导页
+- [x] ECharts 图表
+- [ ] Clipboard(剪贴复制)
+- [ ] Markdown2html
 
 ## Requirement
 
@@ -11,20 +82,23 @@ nodeJS >= v10.8.0
 npm =>6.2.0
 
 
-## Installation
-
-```bash
-git clone  http://git.mr.com/frontend/web-admin-template.git
-```
-
-
 ## Quick start
 
 ```bash
+# 克隆项目
+git clone  http://git.mr.com/frontend/web-admin-template.git
+
+# 进入项目目录
+cd web-admin-template
+
+
+# 安装依赖
+npm install
+
 # Install dependencies 建议不要用cnpm  安装有各种诡异的bug 可以通过如下操作解决npm速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
-# Serve with hot reload 
+# 本地开发 启动项目
 npm run dev
 ```
 
@@ -55,7 +129,7 @@ npm run build
 
 ```
 
-### Nginx
+### 发布上线
 
 > 测试环境请支持https
 
