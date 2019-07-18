@@ -38,7 +38,7 @@
             const root = this.routers.filter(item => item.name === rootName)[0];
             const navList = root.children || [];
             if (this.hasTopRoute) {
-                this.navList = navList.filter(item => item.meta.top === true);
+                this.navList = navList.filter(item => item.meta.hidden !== true);
             }
         },
         data() {

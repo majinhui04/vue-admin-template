@@ -10,9 +10,10 @@
 </template>
 <script>
     export default {
-        mounted(){
+        name: 'DashboardIndex',
+        mounted() {
         }
-    }
+    };
 </script>
 <style scoped lang="scss">
     .no-auth {

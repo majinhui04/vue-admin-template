@@ -1,8 +1,8 @@
 export default [
     {
-        alwaysShow: true,
         path: 'dashboard',
         meta: {
+            top: true,
             iconType: 'svg',
             icon: 'nested',
             title: '总览'
@@ -19,6 +19,23 @@ export default [
         ]
     },
     {
+        path: 'color',
+        meta: {
+            iconType: 'svg',
+            icon: 'nested',
+            title: '颜色'
+        },
+        children: [
+            {
+                path: 'index',
+                meta: {
+                    title: '颜色'
+                },
+                component: () => import('@/pages/color/index.vue')
+            }
+        ]
+    },
+    {
         alwaysShow: true,
         path: 'directive',
         meta: {
@@ -28,6 +45,7 @@ export default [
         },
         children: [
             {
+                alwaysShow: true,
                 path: 'table',
                 meta: {
                     title: 'table'
@@ -44,25 +62,9 @@ export default [
         ]
     },
     {
-        alwaysShow: true,
-        path: 'color',
-        meta: {
-            iconType: 'svg',
-            icon: 'nested',
-            title: '颜色'
-        },
-        children: [
-            {
-                path: 'index',
-                meta: {
-                    title: '颜色'
-                }
-            }
-        ]
-    },
-    {
         path: 'demo',
         meta: {
+            top: true,
             title: '组件'
         },
         children: [

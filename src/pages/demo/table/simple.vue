@@ -18,6 +18,7 @@
 <script>
 
     export default {
+        name: 'DemoTableSimple',
         components: {},
         data() {
             return {
@@ -195,6 +196,9 @@
         },
         created() {
             this.queryOrderType();
+        },
+        mounted() {
+            console.log(12343242);
         },
         methods: {
             handleLink(row) {

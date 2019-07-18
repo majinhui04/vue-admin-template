@@ -48,6 +48,7 @@
         },
         computed: {
             ...mapState({
+                menus: state => state.permission.menus,
                 title: state => state.settings.title,
                 hasTopRoute: state => state.settings.hasTopRoute,
                 showSidebarToggle: state => state.settings.showSidebarToggle
@@ -64,7 +65,7 @@
             },
             // 初始化侧边栏菜单
             initSideRouter() {
-                const routers = this.routers;
+                const routers = this.menus;
                 const matched = this.$route.matched;
                 const rootName = matched[0].name;
                 const topName = matched[1].name;
@@ -72,6 +73,7 @@
                 const root = routers.filter(item => item.name === rootName)[0];
                 // 获取顶级模块列表
                 const rootChildren = root.children || [];
+
                 // 是否有顶级模块
                 // 获取顶级模块
                 const top = rootChildren.filter(item => item.name === topName)[0];

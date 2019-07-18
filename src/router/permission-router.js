@@ -19,35 +19,52 @@ import routerConfig from '../route.config';
 
 const routes = [...routerConfig];
 const treeStr = []; // 打印一下
+function formateRouteName(fullPath) {
+    const list = fullPath.split('/');
+    const result = [];
+    list.forEach(item => {
+        if (item) {
+            result.push(item.slice(0, 1).toUpperCase() + item.slice(1));
+        }
+    });
+    return result.join('');
+}
 
 function addRoute(list) {
     const stack = [...list];
     while (stack.length) {
         const curr = stack.shift();
-        curr.dir = curr.parentName ? curr.parentName + ':' + (curr.path || 'index') : (curr.path || 'index');
-        let space = Array.apply(null, Array(curr.dir.split(':').length * 2)).map(function (item, i) {
+        curr.meta = curr.meta || {};
+        // 判断是否是顶级模块
+        if (!curr.meta.parentName) {
+            curr.meta.isTop = true;
+            curr.meta.fullPath = '/' + curr.path;
+        } else {
+            curr.meta.fullPath = curr.meta.parentName + '/' + (curr.path || 'index');
+        }
+        if (!curr.name) {
+            curr.name = formateRouteName(curr.meta.fullPath);
+        }
+        let space = Array.apply(null, Array(curr.meta.fullPath.split('/').length * 2)).map(function (item, i) {
             return ' ';
         });
-        let title = curr.meta ? curr.meta.title || curr.path || 'index' : curr.path || 'index';
-        if (!curr.name) {
-            curr.name = '/' + curr.dir.split(':').join('/');
-        }
+        let title = curr.meta.title || curr.path || 'index';
         treeStr.push(...[space.join(''), '├──', title + curr.name, '\n']);
-        // 顶级路由
-        if (!curr.parentName) {
+
+        if (!curr.meta.parentName) {
             curr.component = portalMain;
         } else if (curr.children && curr.children.length) {
             // 层级路由
             curr.component = portalView;
         } else {
             // 叶子路由
-            if (!curr.component) {
-                curr.component = _import(curr.dir);
+            if(!curr.component) {
+                curr.component = _import(curr.meta.fullPath);
             }
         }
-        if (curr.children && curr.children.length) {
+        if (curr.children && curr.children.length){
             curr.children.forEach(item => {
-                item.parentName = curr.dir;
+                item.meta.parentName = curr.meta.fullPath;
             });
             stack.unshift(...curr.children);
         }
@@ -56,14 +73,14 @@ function addRoute(list) {
 }
 
 function _import(dir) {
-    const result = dir.split(':');
+    const result = dir.slice(1).split('/');
     const name = result.pop();
     const filename = result.join('/') + '/';
     return resolve => require.ensure([], () => resolve(require(`../pages/${filename}${name}.vue`)));
 }
 
 addRoute(routes);
-console.log(treeStr.join(''));
+// console.log(treeStr.join(''));
 export default [
     {
         path: '/',

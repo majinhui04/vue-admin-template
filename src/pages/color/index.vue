@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: 'Color',
+        name: 'ColorIndex',
         props: {},
         data() {
             return {
@@ -17,6 +17,7 @@
         created() {
         },
         mounted() {
+            console.log('ColorIndex');
         },
         methods: {}
     };

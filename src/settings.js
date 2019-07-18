@@ -18,7 +18,7 @@ module.exports = {
      * @type {boolean} true | false
      * @description Whether show the top route
      */
-    hasTopRoute: false,
+    hasTopRoute: true,
     /**
      * @type {boolean} true | false
      * @description Whether show the header

@@ -21,6 +21,7 @@
         },
         computed: {
             ...mapState({
+                hasTopRoute: state => state.settings.hasTopRoute,
                 showHeader: state => state.settings.showHeader,
                 showBreadcrumb: state => state.settings.showBreadcrumb
             }),
@@ -28,20 +29,12 @@
         },
         watch: {
             $route(newVal, oldVal) {
-                this.updateView();
-            }
-        },
-        created() {
-            this.updateView();
-        },
-        methods: {
-            updateView() {
-                const matched = this.$route.matched;
-                // 获取二级目录
-                const first = matched[1];
-                // 当出现二级目录是顶级模块则需要重新渲染view
-                if (first && first.meta.top) {
-                    this.name = first.name;
+                const newModule = newVal.fullPath.slice(1).split('/')[0];
+                const oldModule = oldVal.fullPath.slice(1).split('/')[0];
+                if (this.hasTopRoute && (newModule !== oldModule)) {
+                    this.name = newVal.name;
+                    this.$store.dispatch('tagsView/delAllCachedViews');
+                    this.$store.dispatch('tagsView/delAllVisitedViews');
                 }
             }
         }

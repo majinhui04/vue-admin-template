@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-        <h1>DirectiveTable</h1>
+        <h1>{{$route.name}}</h1>
         <div>
             <el-table
                 :data="tableData"
@@ -27,7 +27,7 @@
 
 <script>
     export default {
-        name: 'DirectiveTable',
+        name: 'DirectiveTableIndex',
         props: {},
         data() {
             return {
