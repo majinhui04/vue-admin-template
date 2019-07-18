@@ -334,3 +334,4 @@ Modern browsers and Internet Explorer 10+.
 ## changelog
 20190716 Releasing 1.0.4
 20190718 Releasing 1.0.5
+20190718 Releasing 1.0.6
