@@ -1,5 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
+const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 
 function resolve(dir) {
     return path.join(__dirname, dir);
@@ -20,9 +22,22 @@ module.exports = {
         }
     },
     configureWebpack: (config) => {
+        config.plugins.push(new ForceCaseSensitivityPlugin())
         if (isProd) {
             config.externals = {
                 'echarts': 'echarts'
+            };
+            config.optimization = {
+                minimizer: [
+                    new TerserPlugin({
+                        terserOptions: {
+                            compress: {
+                                drop_debugger: true,
+                                drop_console: true
+                            }
+                        }
+                    })
+                ]
             };
         }
     },

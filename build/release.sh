@@ -20,6 +20,9 @@ then
   git add -A
   git commit -m "[build] $VERSION"
   npm version $VERSION --message "[release] $VERSION"
+  # git tag -a "v$VERSION" -m "[release] $VERSION"
+  git push origin "v$VERSION"
+  git push github "v$VERSION"
 
   # publish
   git push github master

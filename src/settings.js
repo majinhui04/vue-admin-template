@@ -6,7 +6,7 @@ module.exports = {
      */
     isAuth: true,
     router: {
-        whiteList: ['/login', '/404', '/403'],
+        whiteList: ['/login', '/404', '/403', '/login2'],
         mode: 'hash',
         afterEach(from, to) {
         }
