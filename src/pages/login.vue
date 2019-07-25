@@ -6,24 +6,23 @@
                     <div class="login-title">登录</div>
                     <div class="login-form">
                         <div class="form-loginName row">
-                            <label :class="{'focus-label': loginNameActive}">手机号/邮箱</label>
+                            <label :class="{'focus-label': loginNameActive}">账号</label>
                             <div class="value">
-                                <input ref="loginName" type="text" class="login-account" v-model.trim="loginForm.loginName" @focus="handleFocus('loginName', 'focus')" @blur="handleBlur('loginName', 'focus')" autocomplete="off" />
+                                <input ref="loginName" type="text" class="login-account" v-model.trim="loginForm.loginName" @focus="handleFocus('loginName', 'focus')" @blur="handleBlur('loginName', 'focus')" autocomplete="off" @keyup.enter="handleLogin" />
                             </div>
                         </div>
                         <div class="login-password row mt0">
                             <label :class="{'focus-label': passwprdActive}">密码</label>
                             <div class="value">
-                                <input ref="password" :type="pwdType" class="login-account" v-model.trim="loginForm.password" @focus="handleFocus('password', 'focus')" @blur="handleBlur('password', 'focus')" @keyup.enter.native="handleLogin" autocomplete="off" />
+                                <input ref="password" :type="pwdType" class="login-account" v-model.trim="loginForm.password" @focus="handleFocus('password', 'focus')" @blur="handleBlur('password', 'focus')" @keyup.enter="handleLogin" autocomplete="off" />
                             </div>
                         </div>
                         <div class="no-value">{{textActive}}</div>
                     </div>
-                    <button class="login-submit" @click="handleLogin">登录</button>
+                    <div class="login-button"><a class="login-submit" @click="handleLogin">登录</a></div>
                 </div>
                 <div class="main-banner">
-                    <div class="project-logo"></div>
-                    <div class="project-title">资金中心</div>
+                    <div class="project-title">{{title}}</div>
                     <div class="project-banner"></div>
                 </div>
             </div>
@@ -42,23 +41,20 @@ export default {
                 loginName: '',
                 password: ''
             },
-            loginRules: {
-                loginName: [{ required: true, message: '请填写登录名', trigger: 'blur' }],
-                password: [{ required: true, message: '请填写密码', trigger: 'blur' }]
-            },
             loading: false,
             pwdType: 'password',
             redirect: undefined,
             loginNameActive: false,
             passwprdActive: false,
-            textActive: ''
+            textActive: '',
+            title: this.$store.state.settings.title
         };
     },
     mounted() {},
     methods: {
         handleLogin() {
             if (!this.loginForm.loginName && !this.loginForm.password) {
-                this.textActive = '请输入手机号';
+                this.textActive = '请输入账号';
                 return;
             } else if (!this.loginForm.password) {
                 this.textActive = '请输入密码';
@@ -103,17 +99,15 @@ export default {
     display: table;
     width: 100%;
     height: 100%;
-    margin: 0 auto;
     .copyright {
         position: fixed;
-        text-align: center;
-        z-index: -1;
         left: 0;
+        right: 0;
         bottom: 30px;
         width: 100%;
-        color: #333;
+        text-align: center;
+        color: rgba(10,18,32,.46);
     }
-
     .login-form-container {
         display: table-cell;
         width: 100%;
@@ -138,8 +132,8 @@ export default {
                     color: #5182e4;
                     transition: all 0.2s ease-in-out;
                     box-shadow: inset 0 -1px 0 #5182e4, 0 1px 0 #5182e4;
-                    margin-bottom: 40px;
-                    font-size: 16px;
+                    margin-bottom: 30px;
+                    font-size: 14px;
                 }
                 .login-form {
                     .row {
@@ -151,14 +145,14 @@ export default {
                             top: 0;
                             line-height: 32px;
                             text-align: left;
-                            font-size: 16px;
-                            color: rgba(0, 0, 0, 0.5);
+                            font-size: 14px;
+                            color: rgba(0, 0, 0, 0.4);
                             transition: 0.2s ease-in-out all;
                         }
                         .focus-label {
                             transition: 0.2s ease-in-out all;
-                            top: -30px;
-                            font-size: 14px;
+                            top: -28px;
+                            font-size: 12px;
                         }
                         .login-account {
                             position: relative;
@@ -176,9 +170,9 @@ export default {
                             transition: 0.2s ease-in-out all;
                         }
                         .login-account:focus {
-                            box-shadow: inset 0 -1px 0 0 #5182e4;
                             transition: 0.2s ease-in-out all;
                             outline: none;
+                            box-shadow: inset 0 -1px 0 #5182e4, 0 1px 0 #5182e4;
                         }
                     }
                     .mt0 {
@@ -192,18 +186,22 @@ export default {
                         text-align: left;
                     }
                 }
-                .login-submit {
-                    min-width: 120px;
-                    padding: 0 32px;
-                    line-height: 40px;
-                    border-radius: 40px;
-                    font-size: 14px;
-                    background: #2e68dc;
-                    box-shadow: 0 4px 8px 0 rgba(30, 62, 124, 0.15);
-                    color: #fff;
-                }
-                .login-submit:focus {
-                    outline: none;
+                .login-button {
+                    .login-submit {
+                        display: block;
+                        width: 120px;
+                        padding: 0 32px;
+                        line-height: 40px;
+                        border-radius: 40px;
+                        font-size: 14px;
+                        background: #2e68dc;
+                        box-shadow: 0 4px 8px 0 rgba(30, 62, 124, 0.15);
+                        color: #fff;
+                        text-align: center;
+                    }
+                    .login-submit:focus {
+                        outline: none;
+                    }
                 }
             }
             .main-banner {
@@ -213,11 +211,8 @@ export default {
                 width: 300px;
                 height: 100%;
                 text-align: center;
-                background-image: -webkit-linear-gradient(#4562e9 0, #56b5fe 100%), -webkit-radial-gradient(18% 84%, #5888f5 2%, #586ef5 60%, #7558f4 100%);
-                background-image: -o-linear-gradient(#4562e9 0, #56b5fe 100%), -o-radial-gradient(18% 84%, #5888f5 2%, #586ef5 60%, #7558f4 100%);
                 background-image: linear-gradient(#4562e9 0, #56b5fe 100%), radial-gradient(18% 84%, #5888f5 2%, #586ef5 60%, #7558f4 100%);
                 .project-logo {
-                    // color: #fff;
                     position: absolute;
                     top: 2px;
                     left: 22px;
@@ -232,7 +227,7 @@ export default {
                     color: #fff;
                     position: absolute;
                     top: 2px;
-                    right: 22px;
+                    left: 22px;
                     display: block;
                     line-height: 60px;
                     font-size: 30px;
@@ -245,25 +240,9 @@ export default {
                     height: 233px;
                     margin-top: -96.5px;
                     margin-left: -116.5px;
-                    background: url('../assets/img/banner.jpg') center center no-repeat;
+                    background: url('../assets/img/login-banner1.png') center center no-repeat;
                     background-size: cover;
                 }
-            }
-            .logo {
-                width: 70px;
-            }
-            .title {
-                font-size: 26px;
-                font-weight: 400;
-                color: #333;
-                margin-left: 10px;
-                text-align: center;
-            }
-
-            .head {
-                margin-top: 30px;
-                margin-bottom: 50px;
-                text-align: center;
             }
         }
     }
