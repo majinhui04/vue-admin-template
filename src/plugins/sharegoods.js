@@ -1,15 +1,15 @@
 import Vue from 'vue';
 // 公共
-import SharegoodsUI from 'sharegoods-ui';
-import $console from 'sharegoods-ui/lib/utils/logger';
-import 'sharegoods-ui/lib/index.css';
+import SharegoodsUI from '../../sharegoods-ui/src/index';
+import $console from '../../sharegoods-ui/lib/utils/logger';
+import '../../sharegoods-ui/packages/styles/index.scss';
 // 后台样式
 import '../portal/styles/index.scss';
 import '../icons/index';
 
 import { API } from '../api';
 
-Vue.use(SharegoodsUI);
+Vue.use(SharegoodsUI, { test1111: true });
 Vue.prototype.$api = API;
 Vue.prototype.$console = $console;
 window.$console = $console;

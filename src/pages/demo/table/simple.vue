@@ -1,11 +1,16 @@
 <template>
     <div class="content">
         <sg-table-filter :config="filterConfig" v-model="formData" @submit="search"></sg-table-filter>
-        <sg-table-view :config="tableConfig" :tabs="tabs" :tools="tools" ref="sgTableView"
-                       :response-formatter="responseFormatter"
-                       :params-formatter="{'activeName':'status','pageSize':'limit'}">
+        <sg-table-view
+            resize-target="appContent"
+            :config="tableConfig"
+            :tabs="tabs"
+            :tools="tools"
+            ref="sgTableView"
+            :response-formatter="responseFormatter"
+            :params-formatter="{'activeName':'status','pageSize':'limit'}">
             <button slot="tools">
-                111
+                <router-link :to="{path:'/demo/table/form'}">新增</router-link>
             </button>
             <el-table-column align="center" slot="author" label="上课了" width="120">
                 <template slot-scope="scope"><a href="javascript:void(0)" @click="handleLink(scope.row)">{{
@@ -60,11 +65,15 @@
                 tabs: [
                     {
                         label: '选项A',
-                        name: 'a'
+                        name: ''
                     },
                     {
                         label: '选项B',
                         name: 'b'
+                    },
+                    {
+                        label: '选项C',
+                        name: 'c'
                     }
                 ],
                 tableConfig: {
@@ -86,14 +95,21 @@
                             prop: 'author'
                         },
                         {
+                            width: 200,
                             label: '标题',
-                            prop: 'title'
+                            prop: 'title1'
+                        },
+                        {
+                            width: 800,
+                            label: '标题',
+                            prop: 'title1'
                         },
                         {
                             label: '作者',
                             prop: 'author'
                         },
                         {
+                            width: 300,
                             label: '操作',
                             type: 'button',
                             prop: 'title',
@@ -150,10 +166,10 @@
                     load: (params) => {
                         const data = { ...params, ...this.formData };
                         return this.$api.articleList(data).then(res => {
-                            console.log(44, res);
+                            console.log(res);
                             return res;
                         }).catch(err => {
-                            console.log(33, err);
+                            console.log(err);
                             return err;
                         });
                     }
@@ -198,11 +214,9 @@
             this.queryOrderType();
         },
         mounted() {
-            console.log(12343242);
         },
         methods: {
             handleLink(row) {
-                console.log(1234, row);
             },
             responseFormatter(res) {
                 const body = res.data || {};

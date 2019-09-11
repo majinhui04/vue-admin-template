@@ -3,8 +3,8 @@ import Urls from './api.js';
 import store from '../store';
 import { getToken, setToken } from '../utils/auth';
 import { Message } from 'element-ui';
-import $console from 'sharegoods-ui/lib/utils/logger';
-import HttpClient from 'sharegoods-ui/lib/utils/http/http-client';
+import $console from '../../sharegoods-ui/lib/utils/logger';
+import HttpClient from '../../sharegoods-ui/lib/utils/http/http-client';
 
 Vue.use(HttpClient, {
     Message,

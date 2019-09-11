@@ -84,6 +84,12 @@ export default [
                         }
                     },
                     {
+                        path: 'form',
+                        meta: {
+                            title: '表单组件'
+                        }
+                    },
+                    {
                         path: 'index',
                         meta: {
                             title: 'index'
