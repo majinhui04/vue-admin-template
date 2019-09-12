@@ -1,3 +1,30 @@
+## page-form 页面表单
+用来动态生成表单,目前支持`fieldType` 为 `input`、`date`、`select`。
+其中`input`中的`type`又包含`text`、`password`、`textarea`
+
+### Attributes
+| 参数      | 说明          | 类型      | 可选值                           | 默认值  |
+|---------- |-------------- |---------- |--------------------------------  |-------- |
+| inline | 是否行布局 | Boolean | - | false |
+| field-list | 表单元素 | Array | - | - |
+| rules | 校验规则 | Array | - | - |
+| ref-obj | 表单对象 | Object | - | - |
+| label-width | label宽度 | String | - | `120px` |
+| onSubmitText | 提交文案 | String | - | `提交` |
+| onResetText | 重置文案 | String | - | `重置` |
+
+
+### 方法
+
+| 方法名     | 说明              |
+| ---------- | ----------------- |
+| getChecked | 返回数据列表Array |
+
+### 使用案例
+
+
+:::demo 
+```html
 <template>
     <div class="content">
         <sg-page-form
@@ -67,6 +94,7 @@
                             type: 'datetimerange',
                             valueFormat: 'yyyy-MM-dd HH:mm:ss',
                             format: 'yyyy-MM-dd HH:mm:ss',
+                            defaultTime:null,
                             fieldType: 'date'
                         },
                         {
@@ -101,7 +129,7 @@
                     ref: null,
                     data: {
                         test: '',
-                        account: '',
+                        //account: '',
                         password: '',
                         password2: '',
                         note: '',
@@ -183,7 +211,8 @@
                             { required: true, message: '请输入', trigger: 'blur' },
                             { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
                         ]
-                    }
+                    },
+                    labelWidth: '80px'
                 }
             };
         },
@@ -207,5 +236,7 @@
         }
     };
 </script>
-<style scoped lang="scss">
-</style>
+
+```
+:::
+
