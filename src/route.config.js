@@ -78,6 +78,12 @@ export default [
                 },
                 children: [
                     {
+                        path: 'query',
+                        meta: {
+                            title: 'query'
+                        }
+                    },
+                    {
                         path: 'simple',
                         meta: {
                             title: 'simple'

@@ -6,10 +6,12 @@ import Pagination from '../packages/pagination/index.js';
 import Chart from '../packages/chart/index.js';
 import Upload from '../packages/upload/index.js';
 import PageForm from '../packages/page-form/index.js';
+import PageDialog from '../packages/page-dialog/index.js';
 
 import '../packages/styles/index.scss';
 
 const components = [
+    PageDialog,
     PageForm,
     Chart,
     Pagination,
