@@ -337,3 +337,4 @@ Modern browsers and Internet Explorer 10+.
 20190718 Releasing 1.0.6
 20190911 Releasing 1.0.7
 20190912 Releasing 1.0.8
+20190918 Releasing 1.0.9
