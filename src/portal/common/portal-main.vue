@@ -4,7 +4,7 @@
         <div class="portal-content" id="appContent">
             <tags-view v-if="needTagsView"/>
             <v-breadcrumb v-if="showBreadcrumb"></v-breadcrumb>
-            <div class="portal-content-view" :title="key">
+            <div class="portal-content-view">
                 <keep-alive :include="cachedViews">
                     <router-view :key="key" />
                 </keep-alive>
