@@ -69,6 +69,14 @@ export default [
         },
         children: [
             {
+                path: 'editor',
+                meta: {
+                    iconType: 'svg',
+                    icon: 'nested',
+                    title: 'markdown'
+                }
+            },
+            {
                 alwaysShow: true,
                 path: 'table',
                 meta: {

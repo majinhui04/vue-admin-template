@@ -10,6 +10,7 @@ import './plugins/polyfill.js';
 import './plugins/directives.js';
 // 私有主题
 import './app.scss';
+import './components/global.js';
 
 Vue.config.productionTip = false;
 
