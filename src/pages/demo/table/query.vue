@@ -10,20 +10,11 @@
         >
         </sg-page-form>
         <sg-table-view
-            resize-target="appContent"
             :config="tableConfig"
-            :tabs="tabs"
             :tools="tools"
             ref="sgTableView"
             :response-formatter="responseFormatter"
             :params-formatter="{'activeName':'status','pageSize':'limit'}">
-            <button slot="tools">
-                <router-link :to="{path:'/demo/table/form'}">新增</router-link>
-            </button>
-            <el-table-column align="center" slot="author" label="上课了" width="120">
-                <template slot-scope="scope"><a href="javascript:void(0)" @click="handleLink(scope.row)">{{
-                    scope.row.author }}</a></template>
-            </el-table-column>
         </sg-table-view>
 
         <!-- 弹窗 -->
@@ -46,7 +37,8 @@
             >
                 <el-form-item label="头像" prop="avatar" slot="avatar" class="el-form-block">
                     <el-upload name="file">上传</el-upload>
-                    <img :src="formInfo.data.avatar" alt="" v-if="formInfo.data.avatar" style="width: 80px;height: 80px;">
+                    <img :src="formInfo.data.avatar" alt="" v-if="formInfo.data.avatar"
+                         style="width: 80px;height: 80px;">
                 </el-form-item>
                 <div slot="form-footer"></div>
             </sg-page-form>
@@ -55,7 +47,16 @@
 </template>
 
 <script>
-
+    const UserModel = {
+        account: '',
+        nickName: '',
+        sex: '',
+        password: '',
+        password2: '',
+        birthday: '',
+        avatar: '',
+        note: ''
+    };
     export default {
         name: 'DemoTableQuery',
         components: {},
@@ -126,8 +127,7 @@
                     width: '600px',
                     title: {
                         create: '添加',
-                        update: '编辑',
-                        view: '文章信息'
+                        update: '编辑'
                     },
                     visible: false,
                     type: '',
@@ -149,6 +149,7 @@
                     ref: null,
                     labelWidth: '100px',
                     data: {
+                        ...UserModel
                     },
                     fieldList: [
                         {
@@ -228,37 +229,7 @@
                 tools: [{
                     label: '创建',
                     onClick: this.addUser
-                },
-                    {
-                        name: 'tools',
-                        type: 'slot'
-                    }, {
-                        label: '导出',
-                        onClick: () => {
-                            const val = this.$refs['sgTableView'].getChecked();
-                            const checked = val.map((item) => item.author);
-                            this.$notify({
-                                title: 'Success',
-                                message: checked.join(','),
-                                type: 'success',
-                                duration: 2000
-                            });
-                        }
-                    }],
-                tabs: [
-                    {
-                        label: '全部',
-                        name: ''
-                    },
-                    {
-                        label: '启用中',
-                        name: '1'
-                    },
-                    {
-                        label: '禁用中',
-                        name: '2'
-                    }
-                ],
+                }],
                 tableConfig: {
                     columns: [
                         {
@@ -343,12 +314,17 @@
         methods: {
             addUser() {
                 this.formInfo.fieldList.forEach(item => {
-                    item.show = true;
+                    delete item.show;
+                    delete item.disabled;
                 });
+                // this.$set(this.formInfo,'data',{nickNname:''})
+                // this.formInfo.data = {};
+                Object.assign(this.formInfo.data, UserModel);
                 this.dialogInfo.type = 'create';
                 this.dialogInfo.visible = true;
             },
             editUser(row) {
+                this.dialogInfo.type = 'update';
                 // this.formInfo.data =  { ...row } 会使得数据双向绑定失效
                 Object.assign(this.formInfo.data, { ...row });
                 this.formInfo.fieldList.forEach(item => {
@@ -380,6 +356,7 @@
                 this.formInfo.ref.validate(valid => {
                     if (valid) {
                         let data = this.formInfo.data;
+                        this.dialogInfo.btLoading = true;
                         this.$api.userSave(data).then(res => {
                             this.$message({
                                 showClose: true,
@@ -387,7 +364,11 @@
                                 type: 'success',
                                 duration: 5000
                             });
-                            this.onDialogClose();
+
+                            setTimeout(() => {
+                                this.dialogInfo.btLoading = false;
+                                this.onDialogClose();
+                            }, 2000);
                         }).catch(e => {
                             console.error(e);
                             this.$message({
@@ -396,6 +377,7 @@
                                 type: 'error',
                                 duration: 5000
                             });
+                            this.dialogInfo.btLoading = false;
                         });
                     } else {
                         this.$message({

@@ -9,6 +9,7 @@
         :close-on-click-modal="closeOnClickModal"
         :close-on-press-escape="true"
     >
+        <!-- 自定义内容区 -->
         <slot/>
         <div
             v-if="btList"
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+    // 这是一个弹出框插件
     export default {
         name: 'SgPageDialog',
         props: {
@@ -73,6 +75,8 @@
         },
         watch: {
             visible(val) {
+                // Fire when the dialog visible change
+                // @arg The argument is a boolean
                 this.$emit('update:visible', val);
             }
         },

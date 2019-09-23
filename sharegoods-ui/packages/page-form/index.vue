@@ -126,6 +126,7 @@
                 return this.fieldList.filter(item => !item.hasOwnProperty('show') || (item.hasOwnProperty('show') && item.show));
             },
             updateForm(fieldName, value) {
+                //this.formData[fieldName] = value;
                 // if (this.formData[fieldName]) {
                 //     this.formData[fieldName] = value;
                 // } else {
