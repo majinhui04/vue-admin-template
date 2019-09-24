@@ -22,7 +22,7 @@ module.exports = {
         }
     },
     configureWebpack: (config) => {
-        config.plugins.push(new ForceCaseSensitivityPlugin())
+        config.plugins.push(new ForceCaseSensitivityPlugin());
         if (isProd) {
             config.externals = {
                 'echarts': 'echarts'
@@ -98,6 +98,13 @@ module.exports = {
                 changeOrigin: true,
                 pathRewrite: {
                     ['^' + process.env.VUE_APP_BASE_API]: ''
+                }
+            },
+            '/v2': {
+                target: 'http://localhost:9000',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/v2': ''
                 }
             }
         },

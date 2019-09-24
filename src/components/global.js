@@ -8,7 +8,6 @@ const requireComponent = require.context(
     /\.(vue|js)$/
     // /Base[A-Z]\w+\.(vue|js)$/ // 匹配基础组件文件名的正则表达式
 );
-console.log(111, requireComponent.keys());
 requireComponent.keys().forEach(fileName => {
     // 获取组件配置
     const componentConfig = requireComponent(fileName);

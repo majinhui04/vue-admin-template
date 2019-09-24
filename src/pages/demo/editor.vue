@@ -7,8 +7,10 @@
     export default {
         data() {
             return {
-                content: '## asdf'
+                content: ''
             };
+        },
+        mounted() {
         }
     };
 </script>
