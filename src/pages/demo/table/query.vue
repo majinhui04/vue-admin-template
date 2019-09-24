@@ -36,7 +36,7 @@
                 :label-width="formInfo.labelWidth"
             >
                 <el-form-item label="头像" prop="avatar" slot="avatar" class="el-form-block">
-                    <el-upload name="file">上传</el-upload>
+                    <el-upload name="file" action="/">上传</el-upload>
                     <img :src="formInfo.data.avatar" alt="" v-if="formInfo.data.avatar"
                          style="width: 80px;height: 80px;">
                 </el-form-item>
@@ -57,6 +57,31 @@
         avatar: '',
         note: ''
     };
+    const pickerOptions = {
+        disabledDate(time) {
+            return time.getTime() > Date.now();
+        },
+        shortcuts: [{
+            text: '今天',
+            onClick(picker) {
+                picker.$emit('pick', new Date());
+            }
+        }, {
+            text: '昨天',
+            onClick(picker) {
+                const date = new Date();
+                date.setTime(date.getTime() - 3600 * 1000 * 24);
+                picker.$emit('pick', date);
+            }
+        }, {
+            text: '一周前',
+            onClick(picker) {
+                const date = new Date();
+                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                picker.$emit('pick', date);
+            }
+        }]
+    };
     export default {
         name: 'DemoTableQuery',
         components: {},
@@ -75,6 +100,7 @@
                     callback();
                 }
             };
+
             return {
                 // 文章相关
                 articleInfo: {},
@@ -82,6 +108,8 @@
                 queryInfo: {
                     labelWidth: '80px',
                     data: {
+                        account: '',
+                        endTime: '2019/09/01',
                         phone: '13456525308'
                     },
                     fieldList: [
@@ -93,16 +121,33 @@
                             class: 'form-item-account'
                         },
                         {
+                            name: 'endTime',
+                            label: '截止时间',
+                            type: 'datetime',
+                            'value-format': 'yyyy-MM-dd',
+                            format: 'yyyy-MM-dd',
+                            fieldType: 'date',
+                            pickerOptions: {
+                                ...pickerOptions
+                            }
+                        },
+                        {
                             name: 'updatetime',
                             label: '时间范围',
                             type: 'datetimerange',
-                            valueFormat: 'yyyy-MM-dd HH:mm:ss',
-                            format: 'yyyy-MM-dd HH:mm:ss',
-                            fieldType: 'date'
+                            'value-format': 'yyyy-MM-dd HH:mm:ss',
+                            format: 'yyyy-MM-dd',
+                            fieldType: 'date',
+                            defaultTime: ['00:00:00', '23:59:59'],
+                            pickerOptions: {
+                                ...pickerOptions
+                            }
                         },
                         {
                             name: 'sex',
                             label: '性别',
+                            // multiple: true,
+                            // size: 'mini',
                             fieldType: 'select',
                             options: [
                                 {
@@ -414,7 +459,7 @@
 
             },
             load(params) {
-                const data = { ...params, ...this.formInfo.data };
+                const data = { ...params, ...this.queryInfo.data };
                 return this.$api.userList(data).then(res => {
                     console.log(res);
                     return res;
