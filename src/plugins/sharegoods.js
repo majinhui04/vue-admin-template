@@ -1,7 +1,7 @@
 import Vue from 'vue';
 // 公共
 import SharegoodsUI from '../../sharegoods-ui/src/index';
-import $console from '../../sharegoods-ui/lib/utils/logger';
+import $console from '../../sharegoods-ui/src/utils/logger';
 import '../../sharegoods-ui/packages/styles/index.scss';
 // 后台样式
 import '../portal/styles/index.scss';

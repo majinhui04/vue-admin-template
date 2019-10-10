@@ -3,7 +3,7 @@
         <div class="login-form-container">
             <div class="main">
                 <div class="main-bg">
-                    <div class="login-title">登录</div>
+                    <div class="login-title">登录{{test}}</div>
                     <div class="login-form">
                         <div class="form-loginName row">
                             <label :class="{'focus-label': loginNameActive}">账号</label>
@@ -44,6 +44,7 @@
         name: 'Login',
         data() {
             return {
+                test: process.env.VUE_APP_BASE_ENV || '',
                 loginForm: {
                     loginName: '',
                     password: ''

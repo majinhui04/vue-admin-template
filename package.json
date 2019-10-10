@@ -7,6 +7,7 @@
     "scripts": {
         "precommit": "lint-staged",
         "preview": "node build/index.js --preview",
+        "preview:test": "node build/index.js --mode test",
         "dev": "npm run serve",
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
@@ -47,6 +48,7 @@
         "eslint": "5.16.0",
         "eslint-plugin-vue": "5.0.0",
         "force-case-sensitivity-webpack-plugin": "^0.2.1",
+        "http-proxy-middleware": "^0.20.0",
         "husky": "1.2.1",
         "lint-staged": "8.1.0",
         "mockjs": "1.0.1-beta3",
