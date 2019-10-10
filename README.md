@@ -339,3 +339,4 @@ Modern browsers and Internet Explorer 10+.
 20190912 Releasing 1.0.8
 20190918 Releasing 1.0.9
 20191010 Releasing 1.0.10
+20191010 Releasing 1.0.11
